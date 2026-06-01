@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 Maths Workout — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbf6ec;
+    --ink:#2b2b2e;
+    --teal:#1f7a72;
+    --teal-dk:#155a54;
+    --coral:#ee6c4d;
+    --coral-dk:#d4502f;
+    --sun:#f4b942;
+    --green:#3a9d6b;
+    --green-soft:#e3f3e9;
+    --orange-soft:#fdeadf;
+    --line:#e6dcc8;
+    --card:#ffffff;
+    --shadow:0 6px 0 rgba(0,0,0,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(244,185,66,.18), transparent 42%),
+      radial-gradient(circle at 88% 92%, rgba(31,122,114,.12), transparent 45%),
+      var(--paper);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2',cursive;letter-spacing:.2px}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 80px}
+
+  /* Header */
+  header.site{
+    text-align:center;padding:26px 0 10px;position:relative;
+  }
+  header.site .kicker{
+    display:inline-block;background:var(--teal);color:#fff;
+    font-weight:800;font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;
+    padding:5px 14px;border-radius:30px;margin-bottom:12px;
+    box-shadow:0 4px 0 var(--teal-dk);
+  }
+  header.site h1{font-size:clamp(2rem,6vw,3.2rem);color:var(--ink);line-height:1.02}
+  header.site h1 span{color:var(--coral)}
+  header.site p.sub{max-width:560px;margin:10px auto 0;color:#6a6357;font-weight:600}
+
+  /* Topic grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:28px}
+  .strand-label{
+    grid-column:1/-1;font-family:'Baloo 2';font-size:1.15rem;margin-top:14px;
+    display:flex;align-items:center;gap:10px;color:var(--teal-dk)
+  }
+  .strand-label::before{content:"";width:14px;height:14px;border-radius:4px;background:var(--coral);display:inline-block;transform:rotate(45deg)}
+  .card{
+    background:var(--card);border:2px solid var(--line);border-radius:18px;
+    padding:18px;cursor:pointer;transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.07)}
+  .card .num{
+    font-family:'Baloo 2';font-size:.95rem;color:#fff;background:var(--teal);
+    width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+    border-radius:10px;margin-bottom:10px;box-shadow:0 3px 0 var(--teal-dk)
+  }
+  .card h3{font-size:1.18rem;line-height:1.1;color:var(--ink)}
+  .card p{font-size:.85rem;color:#867d6d;margin-top:6px;font-weight:600}
+  .card.s-num .num{background:var(--teal);box-shadow:0 3px 0 var(--teal-dk)}
+  .card.s-meas .num{background:var(--coral);box-shadow:0 3px 0 var(--coral-dk)}
+  .card.s-stat .num{background:var(--green);box-shadow:0 3px 0 #2c7a52}
+
+  /* Topic view */
+  .topic-view{display:none}
+  .topic-view.active{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .backbtn{
+    background:#fff;border:2px solid var(--line);border-radius:30px;padding:8px 16px;
+    font-family:'Baloo 2';font-size:.95rem;cursor:pointer;color:var(--teal-dk);
+    box-shadow:0 3px 0 rgba(0,0,0,.06);margin-bottom:18px
+  }
+  .backbtn:hover{background:var(--green-soft)}
+  .topic-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 16px;margin-bottom:6px}
+  .topic-head h2{font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink)}
+  .topic-head .badge{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+    padding:4px 12px;border-radius:20px;background:var(--orange-soft);color:var(--coral-dk)}
+  .topic-intro{color:#6a6357;font-weight:600;margin-bottom:20px;max-width:640px}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+  .tabs{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:30px;padding:4px;box-shadow:0 3px 0 rgba(0,0,0,.05)}
+  .tab{border:none;background:transparent;font-family:'Baloo 2';font-size:1rem;padding:8px 22px;border-radius:24px;cursor:pointer;color:#8a8275}
+  .tab.simple.on{background:var(--green);color:#fff}
+  .tab.hard.on{background:var(--coral);color:#fff}
+  .btn{
+    border:none;font-family:'Baloo 2';font-size:.95rem;padding:9px 18px;border-radius:24px;
+    cursor:pointer;color:#fff;background:var(--teal);box-shadow:0 4px 0 var(--teal-dk);transition:transform .1s
+  }
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--teal-dk)}
+  .btn.ghost{background:#fff;color:var(--teal-dk);border:2px solid var(--line);box-shadow:0 3px 0 rgba(0,0,0,.06)}
+  .btn.sun{background:var(--sun);box-shadow:0 4px 0 #cf9514;color:#5a4205}
+
+  .ws-title{font-family:'Baloo 2';font-size:1.3rem;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .ws-title .pill{font-size:.7rem;font-weight:800;text-transform:uppercase;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+  .pill.green{background:var(--green-soft);color:var(--green)}
+  .pill.coral{background:var(--orange-soft);color:var(--coral-dk)}
+  .ws-note{color:#9a917f;font-size:.85rem;font-weight:600;margin-bottom:16px}
+
+  ol.questions{list-style:none;counter-reset:q}
+  ol.questions li{
+    counter-increment:q;background:#fff;border:2px solid var(--line);border-radius:14px;
+    padding:14px 16px 14px 54px;margin-bottom:10px;position:relative;box-shadow:0 3px 0 rgba(0,0,0,.04)
+  }
+  ol.questions li::before{
+    content:counter(q);position:absolute;left:12px;top:12px;width:30px;height:30px;
+    background:var(--paper);border:2px solid var(--line);border-radius:9px;
+    display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-size:.9rem;color:var(--teal-dk)
+  }
+  ol.questions .qtext{font-weight:700;font-size:1.02rem}
+  ol.questions .ans{
+    margin-top:8px;font-weight:700;color:var(--green);background:var(--green-soft);
+    border-radius:8px;padding:6px 12px;display:none;font-size:.95rem
+  }
+  ol.questions .ans::before{content:"Answer: ";color:#2c7a52}
+  body.show-answers ol.questions .ans{display:block}
+  .reveal{margin-top:8px;background:transparent;border:none;color:var(--coral-dk);font-family:'Baloo 2';font-size:.85rem;cursor:pointer;padding:0;text-decoration:underline}
+  body.show-answers .reveal{display:none}
+
+  footer.site{text-align:center;margin-top:40px;color:#9a917f;font-size:.82rem;font-weight:600}
+  footer.site a{color:var(--teal-dk)}
+
+  @media print{
+    body{background:#fff}
+    header.site,.grid,.toolbar,.backbtn,.reveal,footer.site .noprint{display:none!important}
+    .topic-view{display:block!important}
+    ol.questions li{box-shadow:none;break-inside:avoid}
+    .card{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <span class="kicker">NSW Stage 3 · Mathematics K–10</span>
+    <h1>Year 6 <span>Maths Workout</span></h1>
+    <p class="sub">Pick a topic, choose <b>Simple</b> or <b>Hard</b>, and get a fresh worksheet of 10–15 questions. Tap “New questions” any time for a brand-new set.</p>
+  </header>
+
+  <!-- HOME GRID -->
+  <div id="home">
+    <div class="grid" id="topicGrid"></div>
+  </div>
+
+  <!-- TOPIC VIEW -->
+  <div class="topic-view" id="topicView">
+    <button class="backbtn" onclick="goHome()">← All topics</button>
+    <div class="topic-head">
+      <h2 id="tvTitle"></h2>
+      <span class="badge" id="tvStrand"></span>
+    </div>
+    <p class="topic-intro" id="tvIntro"></p>
+
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="tab simple on" id="tabSimple" onclick="setDiff('simple')">Simple</button>
+        <button class="tab hard" id="tabHard" onclick="setDiff('hard')">Hard</button>
+      </div>
+      <button class="btn" onclick="regen()">↻ New questions</button>
+      <button class="btn sun" onclick="toggleAnswers()" id="ansBtn">Show answers</button>
+      <button class="btn ghost" onclick="window.print()">🖨 Print worksheet</button>
+    </div>
+
+    <div class="ws-title" id="wsTitle"></div>
+    <p class="ws-note">Work them out in your book or print this page. Try to estimate first, then check!</p>
+    <ol class="questions" id="qList"></ol>
+  </div>
+
+  <footer class="site">
+    <p>Aligned to the NSW Mathematics K–10 Syllabus (2022), Stage 3. <span class="noprint">Computational questions are generated automatically so every answer is correct.</span></p>
+  </footer>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const ri=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=ri(0,i);[a[i],a[j]]=[a[j],a[i]];}return a;};
+const sp=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');           // space thousands
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const lcm=(a,b)=>a*b/gcd(a,b);
+const money=n=>'$'+n.toFixed(2);
+function frac(n,d){ // returns nice string, simplified, mixed if needed
+  const g=gcd(n,d); n/=g; d/=g;
+  if(d===1) return ''+n;
+  if(n>d){const w=Math.floor(n/d),r=n%d; return r? w+' '+r+'/'+d : ''+w;}
+  return n+'/'+d;
+}
+const take=(arr,n)=>shuffle(arr).slice(0,n);
+
+/* ---------- topic generators ----------
+   Each returns {simple:[{q,a}...], hard:[...]}  */
+const GEN={};
+
+GEN['whole-numbers']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<6;i++){const n=ri(1000,99999);const places=[[1,'ones'],[10,'tens'],[100,'hundreds'],[1000,'thousands']];const p=pick(places);const digit=Math.floor(n/p[0])%10;simple.push({q:`What is the value of the ${p[1]} digit in ${sp(n)}?`,a:sp(digit*p[0])});}
+  for(let i=0;i<3;i++){const n=ri(1000,9999);const r=pick([10,100,1000]);simple.push({q:`Round ${sp(n)} to the nearest ${sp(r)}.`,a:sp(Math.round(n/r)*r)});}
+  for(let i=0;i<3;i++){const arr=Array.from({length:4},()=>ri(1000,99999));simple.push({q:`Order these from smallest to largest: ${arr.map(sp).join(', ')}`,a:arr.slice().sort((a,b)=>a-b).map(sp).join(', ')});}
+  for(let i=0;i<6;i++){const n=ri(100000,9999999);const r=pick([1000,10000,100000]);hard.push({q:`Round ${sp(n)} to the nearest ${sp(r)}.`,a:sp(Math.round(n/r)*r)});}
+  for(let i=0;i<3;i++){const n=ri(12,40);const f=[];for(let k=1;k<=n;k++)if(n%k===0)f.push(k);hard.push({q:`List all the factors of ${n}.`,a:f.join(', ')});}
+  for(let i=0;i<3;i++){const n=pick([13,17,19,21,23,27,29,31,33,37,39,41]);let prime=n>1;for(let k=2;k<n;k++)if(n%k===0){prime=false;break;}hard.push({q:`Is ${n} a prime number? Explain.`,a:prime?`Yes — its only factors are 1 and ${n}.`:`No — it has factors other than 1 and itself.`});}
+  return {simple,hard};
+};
+
+GEN['add-subtract']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<7;i++){const a=ri(1000,9999),b=ri(1000,9999);simple.push({q:`${sp(a)} + ${sp(b)} = ?`,a:sp(a+b)});}
+  for(let i=0;i<5;i++){let a=ri(3000,9999),b=ri(1000,a);simple.push({q:`${sp(a)} − ${sp(b)} = ?`,a:sp(a-b)});}
+  for(let i=0;i<5;i++){const a=(ri(10,99)/10),b=(ri(10,99)/10);hard.push({q:`${a.toFixed(2)} + ${b.toFixed(2)} = ?`,a:(a+b).toFixed(2)});}
+  for(let i=0;i<4;i++){const a=(ri(50,99)/10),b=(ri(10,49)/10);hard.push({q:`${a.toFixed(2)} − ${b.toFixed(2)} = ?`,a:(a-b).toFixed(2)});}
+  for(let i=0;i<4;i++){const a=ri(2000,8000),total=a+ri(1000,5000);hard.push({q:`☐ + ${sp(a)} = ${sp(total)}. What is the missing number?`,a:sp(total-a)});}
+  return {simple,hard};
+};
+
+GEN['multiply-divide']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<5;i++){const a=ri(2,12),b=ri(2,12);simple.push({q:`${a} × ${b} = ?`,a:''+(a*b)});}
+  for(let i=0;i<4;i++){const a=ri(101,999),b=ri(2,9);simple.push({q:`${a} × ${b} = ?`,a:''+(a*b)});}
+  for(let i=0;i<4;i++){const b=ri(2,9),q=ri(20,90);simple.push({q:`${b*q} ÷ ${b} = ?`,a:''+q});}
+  for(let i=0;i<4;i++){const a=ri(120,899),b=ri(11,29);hard.push({q:`${a} × ${b} = ?`,a:''+(a*b)});}
+  for(let i=0;i<4;i++){const b=ri(3,9),q=ri(12,40),r=ri(1,b-1);hard.push({q:`${b*q+r} ÷ ${b} = ? (give remainder)`,a:`${q} remainder ${r}`});}
+  for(let i=0;i<2;i++){const a=ri(2,99),p=pick([10,100,1000]);hard.push({q:`${a} × ${p} = ?`,a:''+(a*p)});}
+  for(let i=0;i<2;i++){const a=ri(2,9),b=ri(2,9),c=ri(2,9);hard.push({q:`${a} + ${b} × ${c} = ?  (mind the order of operations)`,a:''+(a+b*c)});}
+  return {simple,hard};
+};
+
+GEN['fractions']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<4;i++){const d=pick([2,3,4,5]),m=ri(2,4),n=ri(1,d-1);simple.push({q:`Write an equivalent fraction for ${n}/${d}.`,a:`${n*m}/${d*m}`});}
+  for(let i=0;i<4;i++){const base=pick([2,3,4,5]),k=ri(2,5),n=ri(1,base-1);simple.push({q:`Simplify ${n*k}/${base*k}.`,a:frac(n*k,base*k)});}
+  const fdp=[['1/2','0.5','50%'],['1/4','0.25','25%'],['3/4','0.75','75%'],['1/10','0.1','10%'],['1/5','0.2','20%']];
+  for(let i=0;i<4;i++){const r=pick(fdp);simple.push({q:`Write ${r[0]} as a decimal and a percentage.`,a:`${r[1]} and ${r[2]}`});}
+  for(let i=0;i<4;i++){const d=pick([4,6,8,10]),f=d/2,a=ri(1,f-1),b=ri(1,f-1);hard.push({q:`${a}/${d} + ${b}/${f} = ?`,a:frac(a+b*(d/f),d)});}
+  for(let i=0;i<3;i++){const d=pick([2,3,4,5]),n=ri(1,d-1),w=ri(2,6);hard.push({q:`${n}/${d} × ${w} = ?`,a:frac(n*w,d)});}
+  for(let i=0;i<2;i++){const d=pick([2,3,4,5]),w=ri(2,4),n=ri(1,d-1),imp=w*d+n;hard.push({q:`Write ${imp}/${d} as a mixed numeral.`,a:`${w} ${n}/${d}`});}
+  for(let i=0;i<3;i++){const pct=pick([10,20,25,50]),A=ri(3,30),qty=A*100/pct;hard.push({q:`What is ${pct}% of ${qty}?`,a:''+A});}
+  return {simple,hard};
+};
+
+GEN['patterns']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<6;i++){const a=ri(2,9),d=ri(2,9),terms=[a,a+d,a+2*d,a+3*d];simple.push({q:`Continue the pattern: ${terms.join(', ')}, ___ , ___`,a:`${a+4*d}, ${a+5*d}`});}
+  for(let i=0;i<4;i++){const a=ri(40,90),d=ri(2,8),terms=[a,a-d,a-2*d];simple.push({q:`What is the rule and next number? ${terms.join(', ')}, ...`,a:`Subtract ${d} each time → ${a-3*d}`});}
+  for(let i=0;i<4;i++){const a=ri(2,8),d=ri(2,7),n=ri(8,20);hard.push({q:`A pattern starts at ${a} and adds ${d} each time. What is the ${n}th term?`,a:''+(a+(n-1)*d)});}
+  for(let i=0;i<4;i++){const m=ri(2,9),b=ri(1,9),x=ri(2,12);hard.push({q:`Rule: multiply the input by ${m}, then add ${b}. Input = ${x}. Output = ?`,a:''+(m*x+b)});}
+  for(let i=0;i<3;i++){const m=ri(2,9),b=ri(1,20),n=ri(2,12);hard.push({q:`If n = ${n}, find the value of ${m}n + ${b}.`,a:''+(m*n+b)});}
+  return {simple,hard};
+};
+
+GEN['money']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<6;i++){const c=ri(150,4500)/100,paid=Math.ceil(c)+pick([0,5,10]);simple.push({q:`A toy costs ${money(c)}. You pay with ${money(paid)}. How much change?`,a:money(paid-c)});}
+  for(let i=0;i<5;i++){const a=ri(100,2000)/100,b=ri(100,2000)/100,c=ri(100,2000)/100;simple.push({q:`Find the total: ${money(a)} + ${money(b)} + ${money(c)}`,a:money(a+b+c)});}
+  for(let i=0;i<5;i++){const price=ri(20,100),pct=pick([10,20,25,50]);hard.push({q:`A jacket is ${money(price)}. It has ${pct}% off. What is the sale price?`,a:money(price*(1-pct/100))});}
+  for(let i=0;i<5;i++){const u1=ri(2,9),q1=ri(2,6),u2=ri(2,9),q2=ri(2,6);const cheaper=u1<u2?'Shop A':(u2<u1?'Shop B':'Same');hard.push({q:`Shop A: ${q1} pens for ${money(u1*q1)}. Shop B: ${q2} pens for ${money(u2*q2)}. Which is better value?`,a:cheaper==='Same'?'Same — both cost the same per pen':`${cheaper} (${money(Math.min(u1,u2))} each vs ${money(Math.max(u1,u2))})`});}
+  return {simple,hard};
+};
+
+GEN['length']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<4;i++){const cm=ri(2,50);simple.push({q:`Convert ${cm} cm to millimetres.`,a:`${cm*10} mm`});}
+  for(let i=0;i<3;i++){const m=ri(2,40);simple.push({q:`Convert ${m} m to centimetres.`,a:`${m*100} cm`});}
+  for(let i=0;i<5;i++){const l=ri(3,20),w=ri(2,15);simple.push({q:`A rectangle is ${l} cm long and ${w} cm wide. What is its perimeter?`,a:`${2*(l+w)} cm`});}
+  for(let i=0;i<5;i++){const s=ri(4,20),p=4*s;hard.push({q:`A square has a perimeter of ${p} cm. How long is one side?`,a:`${s} cm`});}
+  for(let i=0;i<5;i++){const l=ri(5,20),w=ri(3,15),p=2*(l+w);hard.push({q:`A rectangle has a perimeter of ${p} cm and a length of ${l} cm. Find its width.`,a:`${w} cm`});}
+  for(let i=0;i<2;i++){const km=ri(2,9);hard.push({q:`Convert ${km} km to metres.`,a:`${km*1000} m`});}
+  return {simple,hard};
+};
+
+GEN['area']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<8;i++){const l=ri(3,20),w=ri(2,15);simple.push({q:`Find the area of a rectangle ${l} cm by ${w} cm.`,a:`${l*w} cm²`});}
+  for(let i=0;i<2;i++){const s=ri(3,15);simple.push({q:`Find the area of a square with side ${s} cm.`,a:`${s*s} cm²`});}
+  for(let i=0;i<5;i++){const b=ri(4,18),h=ri(2,12);hard.push({q:`Find the area of a triangle with base ${b} cm and height ${h} cm.`,a:`${b*h/2} cm²`});}
+  for(let i=0;i<4;i++){const l=ri(8,20),w=ri(6,15),s=ri(2,Math.min(l,w)-1);hard.push({q:`A ${l}×${w} cm rectangle has a ${s}×${s} cm square cut out. What area is left?`,a:`${l*w-s*s} cm²`});}
+  for(let i=0;i<3;i++){const w=ri(2,12),area=w*ri(3,12);hard.push({q:`A rectangle has an area of ${area} cm² and a width of ${w} cm. Find its length.`,a:`${area/w} cm`});}
+  return {simple,hard};
+};
+
+GEN['volume']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<6;i++){const l=ri(2,10),w=ri(2,8),h=ri(2,8);simple.push({q:`Find the volume of a rectangular prism ${l}×${w}×${h} cm.`,a:`${l*w*h} cm³`});}
+  for(let i=0;i<4;i++){const L=ri(1,9);simple.push({q:`How many millilitres are in ${L} litres?`,a:`${L*1000} mL`});}
+  for(let i=0;i<4;i++){const mL=ri(2,9)*500;hard.push({q:`Convert ${mL} mL to litres.`,a:`${mL/1000} L`});}
+  for(let i=0;i<4;i++){const cap=ri(2,9)*250,n=ri(2,8);hard.push({q:`A bottle holds ${cap} mL. How many litres in ${n} bottles?`,a:`${cap*n/1000} L`});}
+  for(let i=0;i<4;i++){const a=ri(2,6),b=ri(2,5),c=ri(2,5),box=2;hard.push({q:`A carton is ${a*box}×${b*box}×${c*box} cm. How many ${box}×${box}×${box} cm cubes fit inside?`,a:''+(a*b*c)});}
+  return {simple,hard};
+};
+
+GEN['mass']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<6;i++){const kg=ri(1,9);simple.push({q:`How many grams are in ${kg} kg?`,a:`${kg*1000} g`});}
+  for(let i=0;i<5;i++){const g=ri(2,9)*500;simple.push({q:`Convert ${g} g to kilograms.`,a:`${g/1000} kg`});}
+  for(let i=0;i<5;i++){const each=ri(2,9),n=ri(3,12);hard.push({q:`${n} bags each weigh ${each} kg. What is the total mass in grams?`,a:`${each*n*1000} g`});}
+  for(let i=0;i<5;i++){const total=ri(4,9)*1000,used=ri(1,3)*500;hard.push({q:`A sack holds ${total/1000} kg of flour. ${used} g is used. How much is left (in g)?`,a:`${total-used} g`});}
+  return {simple,hard};
+};
+
+GEN['time']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<4;i++){const h=ri(1,9);simple.push({q:`How many minutes are in ${h} hours?`,a:`${h*60} minutes`});}
+  for(let i=0;i<3;i++){const m=ri(2,9);simple.push({q:`How many seconds are in ${m} minutes?`,a:`${m*60} seconds`});}
+  for(let i=0;i<4;i++){const h=ri(13,23),mm=pick([0,15,30,45]);simple.push({q:`Write ${h}:${String(mm).padStart(2,'0')} in 12-hour time.`,a:`${h-12}:${String(mm).padStart(2,'0')} pm`});}
+  for(let i=0;i<6;i++){const sh=ri(8,11),sm=pick([0,15,30]),dh=ri(0,2),dm=pick([15,30,45]);let tm=sm+dm,th=sh+dh;if(tm>=60){tm-=60;th++;}hard.push({q:`A class starts at ${sh}:${String(sm).padStart(2,'0')} and runs for ${dh} h ${dm} min. What time does it finish?`,a:`${th}:${String(tm).padStart(2,'0')}`});}
+  for(let i=0;i<4;i++){const days=ri(2,6);hard.push({q:`How many hours are there in ${days} days?`,a:`${days*24} hours`});}
+  return {simple,hard};
+};
+
+GEN['angles']=()=>{
+  const simple=[],hard=[];
+  const classify=d=>d<90?'acute':d===90?'a right angle':d<180?'obtuse':d===180?'a straight angle':'reflex';
+  for(let i=0;i<7;i++){const d=pick([30,45,60,90,120,135,150,180,210,300]);simple.push({q:`What type of angle is ${d}°?`,a:classify(d)});}
+  for(let i=0;i<4;i++){const a=ri(20,160);simple.push({q:`Two angles sit on a straight line. One is ${a}°. Find the other.`,a:`${180-a}°`});}
+  for(let i=0;i<5;i++){const a=ri(40,120),b=ri(20,160-a);hard.push({q:`A triangle has angles ${a}° and ${b}°. Find the third angle.`,a:`${180-a-b}°`});}
+  for(let i=0;i<5;i++){const a=ri(50,150),b=ri(40,Math.min(170,340-a));hard.push({q:`Three angles meet at a point. Two are ${a}° and ${b}°. Find the third.`,a:`${360-a-b}°`});}
+  return {simple,hard};
+};
+
+GEN['shapes2d']=()=>{
+  const S=[
+    {q:'How many sides does a hexagon have?',a:'6'},
+    {q:'How many sides does a pentagon have?',a:'5'},
+    {q:'A triangle with all sides equal is called a…?',a:'equilateral triangle'},
+    {q:'A triangle with one 90° angle is called a…?',a:'right-angled triangle'},
+    {q:'How many lines of symmetry does a square have?',a:'4'},
+    {q:'How many lines of symmetry does an equilateral triangle have?',a:'3'},
+    {q:'True or false: a square is also a rectangle.',a:'True'},
+    {q:'What is an 8-sided shape called?',a:'octagon'},
+    {q:'How many right angles does a rectangle have?',a:'4'},
+    {q:'What do we call a 4-sided shape with one pair of parallel sides?',a:'a trapezium'},
+    {q:'A 4-sided shape with all sides equal but no right angles is a…?',a:'rhombus'},
+    {q:'How many sides does a quadrilateral have?',a:'4'}
+  ];
+  const H=[
+    {q:'What is the sum of the interior angles of a triangle?',a:'180°'},
+    {q:'What is the sum of the interior angles of a quadrilateral?',a:'360°'},
+    {q:'True or false: every rectangle is a square.',a:'False'},
+    {q:'How many lines of symmetry does a (non-square) rectangle have?',a:'2'},
+    {q:'What is the order of rotational symmetry of a square?',a:'4'},
+    {q:'Name the quadrilateral with opposite sides parallel and equal but no right angles.',a:'parallelogram'},
+    {q:'How many sides does a decagon have?',a:'10'},
+    {q:'What does it mean for a polygon to be "regular"?',a:'all sides and all angles are equal'},
+    {q:'A triangle has two angles of 65°. What is the third angle?',a:'50°'},
+    {q:'How many lines of symmetry does a regular pentagon have?',a:'5'},
+    {q:'Which has more sides: a nonagon or an octagon?',a:'a nonagon (9 vs 8)'},
+    {q:'True or false: a rhombus is a type of parallelogram.',a:'True'}
+  ];
+  return {simple:take(S,Math.min(12,S.length)),hard:take(H,Math.min(12,H.length))};
+};
+
+GEN['objects3d']=()=>{
+  const simple=[],hard=[];
+  // cube / known solids
+  const baseS=[
+    {q:'How many faces does a cube have?',a:'6'},
+    {q:'How many edges does a cube have?',a:'12'},
+    {q:'How many vertices does a cube have?',a:'8'},
+    {q:'What 2D shape makes up the faces of a cube?',a:'square'},
+    {q:'How many squares are in the net of a cube?',a:'6'},
+    {q:'Name the 3D object with two circular ends and one curved surface.',a:'cylinder'},
+    {q:'How many flat faces does a cylinder have?',a:'2'},
+    {q:'How many faces does a square-based pyramid have?',a:'5'},
+    {q:'How many vertices does a square-based pyramid have?',a:'5'},
+    {q:'How many faces does a rectangular prism have?',a:'6'},
+    {q:'How many faces does a triangular prism have?',a:'5'},
+    {q:'What 2D shape are the two ends of a cylinder?',a:'circle'}
+  ];
+  simple.push(...take(baseS,11));
+  // procedural prism/pyramid facts: n-gon prism F=n+2,E=3n,V=2n ; pyramid F=n+1,E=2n,V=n+1
+  const names={3:'triangular',4:'rectangular',5:'pentagonal',6:'hexagonal'};
+  for(let i=0;i<4;i++){const n=pick([3,5,6]);const which=pick(['faces','edges','vertices']);const val=which==='faces'?n+2:which==='edges'?3*n:2*n;hard.push({q:`How many ${which} does a ${names[n]} prism have?`,a:''+val});}
+  for(let i=0;i<4;i++){const n=pick([3,4,5,6]);const which=pick(['faces','edges','vertices']);const val=which==='faces'?n+1:which==='edges'?2*n:n+1;hard.push({q:`How many ${which} does a ${names[n]}-based pyramid have?`,a:''+val});}
+  const extraH=[
+    {q:'A prism has two hexagonal faces. How many rectangular faces does it have?',a:'6'},
+    {q:'How many faces does a triangular pyramid (tetrahedron) have?',a:'4'},
+    {q:'How many vertices does a triangular pyramid have?',a:'4'},
+    {q:'A 3D object has 6 rectangular faces. What is it?',a:'a rectangular prism'}
+  ];
+  hard.push(...take(extraH,4));
+  return {simple,hard};
+};
+
+GEN['position']=()=>{
+  const simple=[],hard=[];
+  for(let i=0;i<5;i++){const x=ri(0,10),y=ri(0,10);simple.push({q:`In the coordinate pair (${x}, ${y}), which number is the x-coordinate?`,a:''+x});}
+  for(let i=0;i<5;i++){const x=ri(0,8),y=ri(0,8),r=ri(1,5),u=ri(1,5);simple.push({q:`Start at (${x}, ${y}). Move ${r} right and ${u} up. New coordinates?`,a:`(${x+r}, ${y+u})`});}
+  for(let i=0;i<5;i++){const x=ri(2,9),y=ri(2,9),l=ri(1,x),d=ri(1,y);hard.push({q:`A point is at (${x}, ${y}). It moves ${l} left and ${d} down. Where is it now?`,a:`(${x-l}, ${y-d})`});}
+  const concept=[
+    {q:'When a shape is reflected in a mirror line, does its size change?',a:'No — only its position/orientation changes'},
+    {q:'A "translation" of a shape means it is…?',a:'slid to a new position without turning or flipping'},
+    {q:'A "rotation" of a shape means it is…?',a:'turned around a point'},
+    {q:'In coordinates, do we write the across (x) value or the up (y) value first?',a:'the across (x) value first'},
+    {q:'If a shape is rotated a full turn (360°), how does it look compared to the start?',a:'exactly the same'},
+    {q:'A boat is at grid reference B3. It moves two squares east. What column is it in now?',a:'column D'}
+  ];
+  hard.push(...take(concept,5));
+  return {simple,hard};
+};
+
+GEN['data']=()=>{
+  const simple=[],hard=[];
+  // mean from a small list (built to be whole)
+  for(let i=0;i<4;i++){const n=ri(3,5),mean=ri(4,12);let vals=Array(n).fill(mean);for(let s=0;s<n*4;s++){const x=ri(0,n-1),y=ri(0,n-1);if(x!==y&&vals[x]>1){vals[x]--;vals[y]++;}}simple.push({q:`Find the mean (average) of: ${vals.join(', ')}`,a:''+mean});}
+  for(let i=0;i<4;i++){const vals=Array.from({length:ri(4,6)},()=>ri(2,40));simple.push({q:`What is the range of: ${vals.join(', ')}?`,a:''+(Math.max(...vals)-Math.min(...vals))});}
+  const sConcept=[
+    {q:'Hair colour is an example of which kind of data: numerical or categorical?',a:'categorical'},
+    {q:'Number of pets is an example of which kind of data?',a:'numerical'},
+    {q:'What do we call the most common value in a data set?',a:'the mode'},
+    {q:'On a column graph, what must every axis have?',a:'a label (and a scale)'}
+  ];
+  simple.push(...take(sConcept,4));
+  for(let i=0;i<5;i++){const vals=Array.from({length:5},()=>ri(2,20));const mode=pick(vals);vals.push(mode);hard.push({q:`Find the mode of: ${shuffle(vals).join(', ')}`,a:''+mode});}
+  for(let i=0;i<5;i++){const n=ri(4,6),mean=ri(6,15);let vals=[];let s=0;for(let k=0;k<n-1;k++){const v=ri(2,mean+6);vals.push(v);s+=v;}let last=mean*n-s; if(last<1)last=1; vals.push(last);const realMean=(vals.reduce((a,b)=>a+b,0)/vals.length);hard.push({q:`Find the mean of: ${vals.join(', ')} (round to 1 decimal place)`,a:''+(Math.round(realMean*10)/10)});}
+  const hConcept=[
+    {q:'A graph starts its scale at 50 instead of 0 to make a small difference look big. Is this misleading?',a:'Yes — it can exaggerate the difference'},
+    {q:'If the mean of 5 numbers is 10, what is their total?',a:'50'}
+  ];
+  hard.push(...take(hConcept,2));
+  return {simple,hard};
+};
+
+GEN['chance']=()=>{
+  const simple=[],hard=[];
+  const sConcept=[
+    {q:'What is the probability of an event that is certain to happen?',a:'1 (or 100%)'},
+    {q:'What is the probability of an event that is impossible?',a:'0'},
+    {q:'What is the probability of getting heads when you flip a fair coin?',a:'1/2'},
+    {q:'Which is more likely: rolling a number less than 7 on a die, or rolling a 6?',a:'rolling a number less than 7 (it is certain)'}
+  ];
+  simple.push(...take(sConcept,4));
+  for(let i=0;i<4;i++){const target=ri(1,6);simple.push({q:`What is the probability of rolling a ${target} on a normal six-sided die?`,a:'1/6'});}
+  for(let i=0;i<3;i++){const sections=pick([4,5,8,10]),part=ri(1,sections-1);simple.push({q:`A spinner has ${sections} equal sections. ${part} are red. P(red) = ?`,a:frac(part,sections)});}
+  for(let i=0;i<6;i++){const r=ri(2,8),b=ri(2,8);hard.push({q:`A bag has ${r} red and ${b} blue marbles. What is the probability of drawing a red one?`,a:frac(r,r+b)});}
+  for(let i=0;i<3;i++){hard.push({q:`What is the probability of rolling an even number on a six-sided die?`,a:'1/2'});}
+  const hConcept=[
+    {q:'A coin landed on heads 5 times in a row. What is the chance of heads on the next flip?',a:'still 1/2 — past flips do not change it'},
+    {q:'Probabilities of all possible outcomes should add up to what number?',a:'1'}
+  ];
+  hard.push(...take(hConcept,2));
+  return {simple,hard};
+};
+
+/* ---------- topic metadata ---------- */
+const TOPICS=[
+  {id:'whole-numbers',name:'Whole Numbers & Place Value',strand:'num',intro:'Reading, ordering, rounding and partitioning large numbers, plus factors, multiples and primes.'},
+  {id:'add-subtract',name:'Addition & Subtraction',strand:'num',intro:'Adding and subtracting whole numbers and decimals, with multi-step and missing-number problems.'},
+  {id:'multiply-divide',name:'Multiplication & Division',strand:'num',intro:'Multiplying and dividing larger numbers, remainders, powers of 10 and order of operations.'},
+  {id:'fractions',name:'Fractions, Decimals & Percentages',strand:'num',intro:'Equivalent fractions, simplifying, converting, and finding a percentage of a quantity.'},
+  {id:'patterns',name:'Patterns & Algebra',strand:'num',intro:'Continuing and describing patterns, finding rules, and working with simple expressions.'},
+  {id:'money',name:'Money & Financial Maths',strand:'num',intro:'Change, totals, discounts and finding the best value buy.'},
+  {id:'length',name:'Length & Perimeter',strand:'meas',intro:'Converting units of length and calculating the perimeter of shapes.'},
+  {id:'area',name:'Area',strand:'meas',intro:'Area of rectangles, triangles and composite shapes.'},
+  {id:'volume',name:'Volume & Capacity',strand:'meas',intro:'Volume of prisms and converting between millilitres and litres.'},
+  {id:'mass',name:'Mass',strand:'meas',intro:'Converting grams, kilograms and tonnes, with multi-step problems.'},
+  {id:'time',name:'Time',strand:'meas',intro:'12- and 24-hour time, converting units, and calculating elapsed time.'},
+  {id:'angles',name:'Angles',strand:'meas',intro:'Naming angles and finding unknown angles on a line, at a point and in triangles.'},
+  {id:'shapes2d',name:'2D Shapes',strand:'meas',intro:'Properties, names and symmetry of two-dimensional shapes.'},
+  {id:'objects3d',name:'3D Objects',strand:'meas',intro:'Faces, edges, vertices and nets of prisms, pyramids and other solids.'},
+  {id:'position',name:'Position & Coordinates',strand:'meas',intro:'The number plane, grid references, and translations, reflections and rotations.'},
+  {id:'data',name:'Data',strand:'stat',intro:'Types of data, mean, mode, range and reading graphs.'},
+  {id:'chance',name:'Chance',strand:'stat',intro:'Describing likelihood and calculating simple probabilities.'}
+];
+const STRAND={num:{label:'Number & Algebra',cls:'s-num'},meas:{label:'Measurement & Space',cls:'s-meas'},stat:{label:'Statistics & Probability',cls:'s-stat'}};
+
+/* ---------- render home grid ---------- */
+function renderGrid(){
+  const g=document.getElementById('topicGrid');let html='';let lastStrand='';
+  TOPICS.forEach((t,i)=>{
+    if(t.strand!==lastStrand){html+=`<div class="strand-label">${STRAND[t.strand].label}</div>`;lastStrand=t.strand;}
+    html+=`<div class="card ${STRAND[t.strand].cls}" onclick="openTopic('${t.id}')">
+      <div class="num">${i+1}</div><h3>${t.name}</h3><p>${t.intro}</p></div>`;
+  });
+  g.innerHTML=html;
+}
+
+/* ---------- topic view state ---------- */
+let current=null, diff='simple', data=null;
+function openTopic(id){
+  current=TOPICS.find(t=>t.id===id);
+  diff='simple';
+  document.body.classList.remove('show-answers');
+  document.getElementById('ansBtn').textContent='Show answers';
+  document.getElementById('home').style.display='none';
+  document.getElementById('topicView').classList.add('active');
+  document.getElementById('tvTitle').textContent=current.name;
+  const st=STRAND[current.strand];
+  const sb=document.getElementById('tvStrand');sb.textContent=st.label;
+  document.getElementById('tvIntro').textContent=current.intro;
+  setDiff('simple',true);
+  window.scrollTo(0,0);
+}
+function goHome(){
+  document.getElementById('topicView').classList.remove('active');
+  document.getElementById('home').style.display='block';
+  window.scrollTo(0,0);
+}
+function setDiff(d,skipGen){
+  diff=d;
+  document.getElementById('tabSimple').classList.toggle('on',d==='simple');
+  document.getElementById('tabHard').classList.toggle('on',d==='hard');
+  if(!skipGen||!data) data=GEN[current.id]();
+  renderQuestions();
+}
+function regen(){data=GEN[current.id]();renderQuestions();}
+function renderQuestions(){
+  const list=diff==='simple'?data.simple:data.hard;
+  const wt=document.getElementById('wsTitle');
+  wt.innerHTML=`${current.name} — Worksheet <span class="pill ${diff==='simple'?'green':'coral'}">${diff} · ${list.length} questions</span>`;
+  const ol=document.getElementById('qList');
+  ol.innerHTML=list.map((item,i)=>`<li>
+      <div class="qtext">${item.q}</div>
+      <button class="reveal" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Reveal answer</button>
+      <div class="ans">${item.a}</div>
+    </li>`).join('');
+}
+function toggleAnswers(){
+  const on=document.body.classList.toggle('show-answers');
+  document.getElementById('ansBtn').textContent=on?'Hide answers':'Show answers';
+}
+
+renderGrid();
+</script>
+</body>
+</html>
