@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 English — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbf6ec; --ink:#2b2b2e;
+    --teal:#1f7a72; --teal-dk:#155a54;
+    --coral:#ee6c4d; --coral-dk:#d4502f;
+    --green:#3a9d6b; --green-dk:#2c7a52; --green-soft:#e3f3e9;
+    --berry:#c25b87; --berry-dk:#9e426a; --berry-soft:#f7e6ee;
+    --amber:#e6a23c; --amber-dk:#c2811f;
+    --sun:#f4b942;
+    --coral-soft:#fdeadf;
+    --line:#e6dcc8; --card:#ffffff;
+    --shadow:0 6px 0 rgba(0,0,0,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  h1,h2,h3,.display{font-family:'Baloo 2',cursive;letter-spacing:.2px}
+  body{
+    font-family:'Nunito',sans-serif;color:var(--ink);line-height:1.5;min-height:100vh;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(238,108,77,.16), transparent 42%),
+      radial-gradient(circle at 88% 92%, rgba(31,122,114,.12), transparent 45%),
+      var(--paper);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 40px}
+
+  header.site{text-align:center;padding:26px 0 10px}
+  header.site .kicker{display:inline-block;background:var(--coral);color:#fff;font-weight:800;
+    font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:30px;
+    margin-bottom:12px;box-shadow:0 4px 0 var(--coral-dk)}
+  header.site h1{font-size:clamp(2rem,6vw,3.2rem);color:var(--ink);line-height:1.02}
+  header.site h1 span{color:var(--teal)}
+  header.site p.sub{max-width:560px;margin:10px auto 0;color:#6a6357;font-weight:600}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:24px}
+  .strand-label{grid-column:1/-1;font-family:'Baloo 2';font-size:1.15rem;margin-top:14px;
+    display:flex;align-items:center;gap:10px;color:var(--coral-dk)}
+  .strand-label::before{content:"";width:14px;height:14px;border-radius:4px;background:var(--teal);
+    display:inline-block;transform:rotate(45deg)}
+  .card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .card::after{content:"";position:absolute;right:-26px;top:-26px;width:96px;height:96px;border-radius:50%;
+    background:var(--accent,var(--coral));opacity:.08}
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.07)}
+  .card .num{font-family:'Baloo 2';font-size:.95rem;color:#fff;background:var(--accent,var(--coral));
+    width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;
+    margin-bottom:10px;box-shadow:0 3px 0 rgba(0,0,0,.14)}
+  .card h3{font-size:1.18rem;line-height:1.1;color:var(--ink)}
+  .card p{font-size:.85rem;color:#867d6d;margin-top:6px;font-weight:600}
+
+  /* back / hub buttons */
+  .backbtn{background:#fff;border:2px solid var(--line);border-radius:30px;padding:8px 16px;
+    font-family:'Baloo 2';font-size:.95rem;cursor:pointer;color:var(--coral-dk);
+    box-shadow:0 3px 0 rgba(0,0,0,.06);text-decoration:none;display:inline-block}
+  .backbtn:hover{background:var(--coral-soft)}
+  .backbtn.hub{color:#fff;background:var(--teal);border-color:transparent;box-shadow:0 3px 0 var(--teal-dk)}
+  .backbtn.hub:hover{background:var(--teal-dk)}
+  .nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  #home .nav-row{margin-top:6px}
+
+  .topic-view{display:none}
+  .topic-view.active{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .topic-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 16px;margin-bottom:6px}
+  .topic-head h2{font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink)}
+  .topic-head .badge{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;
+    padding:4px 12px;border-radius:20px;background:var(--coral-soft);color:var(--coral-dk)}
+  .topic-intro{color:#6a6357;font-weight:600;margin-bottom:20px;max-width:640px}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+  .tabs{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:30px;padding:4px;
+    box-shadow:0 3px 0 rgba(0,0,0,.05)}
+  .tab{border:none;background:transparent;font-family:'Baloo 2';font-size:1rem;padding:8px 22px;
+    border-radius:24px;cursor:pointer;color:#8a8275}
+  .tab.simple.on{background:var(--green);color:#fff}
+  .tab.hard.on{background:var(--berry);color:#fff}
+  .btn{border:none;font-family:'Baloo 2';font-size:.95rem;padding:9px 18px;border-radius:24px;cursor:pointer;
+    color:#fff;background:var(--coral);box-shadow:0 4px 0 var(--coral-dk);transition:transform .1s}
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--coral-dk)}
+  .btn.ghost{background:#fff;color:var(--coral-dk);border:2px solid var(--line);box-shadow:0 3px 0 rgba(0,0,0,.06)}
+  .btn.sun{background:var(--sun);box-shadow:0 4px 0 #cf9514;color:#5a4205}
+
+  .ws-title{font-family:'Baloo 2';font-size:1.3rem;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .ws-title .pill{font-size:.7rem;font-weight:800;text-transform:uppercase;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+  .pill.green{background:var(--green-soft);color:var(--green)}
+  .pill.berry{background:var(--berry-soft);color:var(--berry-dk)}
+  .ws-note{color:#9a917f;font-size:.85rem;font-weight:600;margin-bottom:16px}
+
+  ol.questions{list-style:none;counter-reset:q}
+  ol.questions li{counter-increment:q;background:#fff;border:2px solid var(--line);border-radius:14px;
+    padding:14px 16px 14px 54px;margin-bottom:10px;position:relative;box-shadow:0 3px 0 rgba(0,0,0,.04)}
+  ol.questions li::before{content:counter(q);position:absolute;left:12px;top:12px;width:30px;height:30px;
+    background:var(--paper);border:2px solid var(--line);border-radius:9px;display:flex;align-items:center;
+    justify-content:center;font-family:'Baloo 2';font-size:.9rem;color:var(--coral-dk)}
+  ol.questions .qtext{font-weight:700;font-size:1.02rem}
+  ol.questions .ans{margin-top:8px;font-weight:700;color:var(--green);background:var(--green-soft);
+    border-radius:8px;padding:6px 12px;display:none;font-size:.95rem}
+  ol.questions .ans::before{content:"Answer: ";color:#2c7a52}
+  body.show-answers ol.questions .ans{display:block}
+  .reveal{margin-top:8px;background:transparent;border:none;color:var(--coral-dk);font-family:'Baloo 2';
+    font-size:.85rem;cursor:pointer;padding:0;text-decoration:underline}
+  body.show-answers .reveal{display:none}
+
+  @media print{
+    body{background:#fff}
+    header.site,.grid,.toolbar,.backbtn,.nav-row,.reveal{display:none!important}
+    .topic-view{display:block!important}
+    ol.questions li{box-shadow:none;break-inside:avoid}
+    .card{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site">
+    <span class="kicker">NSW Stage 3 · English K–10</span>
+    <h1>Year 6 <span>English</span></h1>
+    <p class="sub">Pick a topic, choose <b>Simple</b> or <b>Hard</b>, and get a worksheet of 10–15 questions. Tap “New questions” for a fresh mix.</p>
+  </header>
+
+  <!-- HOME GRID -->
+  <div id="home">
+    <div class="nav-row">
+      <a class="backbtn hub" href="index.html">↖ Year 6 Hub</a>
+    </div>
+    <div class="grid" id="topicGrid"></div>
+  </div>
+
+  <!-- TOPIC VIEW -->
+  <div class="topic-view" id="topicView">
+    <div class="nav-row">
+      <a class="backbtn hub" href="index.html">↖ Year 6 Hub</a>
+      <button class="backbtn" onclick="goHome()">← All topics</button>
+    </div>
+    <div class="topic-head">
+      <h2 id="tvTitle"></h2>
+      <span class="badge" id="tvStrand"></span>
+    </div>
+    <p class="topic-intro" id="tvIntro"></p>
+
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="tab simple on" id="tabSimple" onclick="setDiff('simple')">Simple</button>
+        <button class="tab hard" id="tabHard" onclick="setDiff('hard')">Hard</button>
+      </div>
+      <button class="btn" onclick="regen()">↻ New questions</button>
+      <button class="btn sun" onclick="toggleAnswers()" id="ansBtn">Show answers</button>
+      <button class="btn ghost" onclick="window.print()">🖨 Print worksheet</button>
+    </div>
+
+    <div class="ws-title" id="wsTitle"></div>
+    <p class="ws-note">For writing tasks there is no single right answer — the answer shows an example or what to aim for.</p>
+    <ol class="questions" id="qList"></ol>
+
+    <div class="nav-row" style="justify-content:center;margin-top:24px">
+      <a class="backbtn hub" href="index.html">↖ Back to Year 6 Hub</a>
+      <button class="backbtn" onclick="goHome()">← All English topics</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const take=(arr,n)=>shuffle(arr).slice(0,Math.min(n,arr.length));
+
+/* =================== QUESTION POOLS ===================
+   Each item: {q: question, a: answer}
+   Edit freely — add or remove items any time. */
+
+const SPELL_S=[
+  {q:'Which spelling is correct: “recieve” or “receive”?', a:'receive'},
+  {q:'Which is correct: “freind” or “friend”?', a:'friend'},
+  {q:'What is the plural of “baby”?', a:'babies'},
+  {q:'What is the plural of “box”?', a:'boxes'},
+  {q:'Add the suffix “-ing” to “run”.', a:'running'},
+  {q:'Add the suffix “-ing” to “hope”.', a:'hoping'},
+  {q:'Which is correct: “becuase” or “because”?', a:'because'},
+  {q:'Which homophone fits: “I can ___ the music.” (here / hear)', a:'hear'},
+  {q:'Which fits: “Put it over ___ by the door.” (their / there / they’re)', a:'there'},
+  {q:'What is the plural of “child”?', a:'children'},
+  {q:'Add “-ed” to “jump”.', a:'jumped'},
+  {q:'What is the plural of “city”?', a:'cities'},
+  {q:'Which is correct: “happend” or “happened”?', a:'happened'},
+  {q:'Write the contraction for “do not”.', a:'don’t'},
+  {q:'Which homophone fits: “We ate ___ much cake.” (to / too / two)', a:'too'}
+];
+const SPELL_H=[
+  {q:'Which is correct: “seperate” or “separate”?', a:'separate'},
+  {q:'Which is correct: “definately” or “definitely”?', a:'definitely'},
+  {q:'What is the plural of “knife”?', a:'knives'},
+  {q:'What is the plural of “leaf”?', a:'leaves'},
+  {q:'Add “-ed” to “travel” (Australian spelling).', a:'travelled'},
+  {q:'Add “-ly” to “happy”.', a:'happily'},
+  {q:'Add “-ing” to “begin”.', a:'beginning'},
+  {q:'Which is correct: “neccessary” or “necessary”?', a:'necessary'},
+  {q:'Which is correct: “embarass” or “embarrass”?', a:'embarrass'},
+  {q:'What is the plural of “potato”?', a:'potatoes'},
+  {q:'Add the prefix “un-” to “necessary”.', a:'unnecessary'},
+  {q:'Which fits: “The team played their best; ___ going to win.” (their / there / they’re)', a:'they’re'},
+  {q:'Which is correct: “arguement” or “argument”?', a:'argument'},
+  {q:'Add “-ous” to “danger”.', a:'dangerous'},
+  {q:'What is the plural of “mouse” (the animal)?', a:'mice'},
+  {q:'Which is correct: “occured” or “occurred”?', a:'occurred'}
+];
+
+const GRAM_S=[
+  {q:'What type of word is “dog” — noun, verb or adjective?', a:'noun'},
+  {q:'What type of word is “jump” in “I jump high”?', a:'verb'},
+  {q:'What type of word is “happy”?', a:'adjective'},
+  {q:'What type of word is “quickly”?', a:'adverb'},
+  {q:'Choose the correct word: “She ___ to school.” (run / runs)', a:'runs'},
+  {q:'Which word is a pronoun: “table”, “she”, “blue”?', a:'she'},
+  {q:'Choose: “___ apple” (a / an)', a:'an'},
+  {q:'Choose: “___ banana” (a / an)', a:'a'},
+  {q:'What punctuation mark ends a question?', a:'a question mark (?)'},
+  {q:'Should “sydney” start with a capital letter? Why?', a:'Yes — it is a proper noun (a place name).'},
+  {q:'Identify the noun in: “The cat slept.”', a:'cat'},
+  {q:'Identify the verb in: “Birds fly south.”', a:'fly'},
+  {q:'What type of word is “and”, which joins words or ideas?', a:'a conjunction'},
+  {q:'Choose the correct word: “The dogs ___ barking.” (is / are)', a:'are'},
+  {q:'Add the missing punctuation: “What time is it”', a:'What time is it?'}
+];
+const GRAM_H=[
+  {q:'Change to past tense: “I walk to school.”', a:'I walked to school.'},
+  {q:'Change to past tense: “She plays netball.”', a:'She played netball.'},
+  {q:'Identify the adverb in: “He spoke softly.”', a:'softly'},
+  {q:'Identify the adjective in: “The enormous whale dived.”', a:'enormous'},
+  {q:'Identify the preposition in: “The cat is under the table.”', a:'under'},
+  {q:'Which is correct: “He don’t know” or “He doesn’t know”?', a:'He doesn’t know.'},
+  {q:'Name the sentence type (simple / compound / complex): “I was tired, so I went to bed.”', a:'compound'},
+  {q:'Name the sentence type: “Although it rained, we played outside.”', a:'complex'},
+  {q:'Identify the subject of: “The tall boy kicked the ball.”', a:'The tall boy'},
+  {q:'Identify the conjunction in: “I wanted to go, but it was late.”', a:'but'},
+  {q:'Choose the correct word: “Neither of the boys ___ here.” (is / are)', a:'is'},
+  {q:'What is the past tense of “run”?', a:'ran'},
+  {q:'Add a comma in the right place: “After lunch we went outside.”', a:'After lunch, we went outside.'},
+  {q:'Which is a complete sentence: “Running fast.” or “She ran fast.”?', a:'She ran fast.'},
+  {q:'Name the tense: “I will travel tomorrow.”', a:'future tense'}
+];
+
+const READ_S=[
+  {q:'A book that tells a made-up story is called fiction or non-fiction?', a:'fiction'},
+  {q:'What is the purpose of a glossary in a book?', a:'to explain the meaning of key or difficult words'},
+  {q:'What does the prefix “un-” mean (as in “unhappy”)?', a:'not'},
+  {q:'Give an antonym (opposite) of “hot”.', a:'cold'},
+  {q:'Give a synonym (similar word) for “big”.', a:'large (or huge / enormous)'},
+  {q:'What is the purpose of a contents page?', a:'to show what is in the book and on which page'},
+  {q:'What does the prefix “re-” mean (as in “redo”)?', a:'again'},
+  {q:'A text that gives facts and information is called?', a:'non-fiction (an informative text)'},
+  {q:'What is a heading used for?', a:'to tell you what a section is about'},
+  {q:'What does the word “author” mean?', a:'the person who wrote the text'},
+  {q:'Give an antonym of “begin”.', a:'end (or finish)'},
+  {q:'What does the suffix “-ful” mean in “careful”?', a:'full of'},
+  {q:'What do we call the main character of a story?', a:'the protagonist (main character)'},
+  {q:'What does the prefix “pre-” mean (as in “preview”)?', a:'before'},
+  {q:'A group of sentences about one idea is called a?', a:'paragraph'}
+];
+const READ_H=[
+  {q:'Name the technique: “as quiet as a mouse”.', a:'simile'},
+  {q:'Name the technique: “The wind whispered through the trees.”', a:'personification'},
+  {q:'Name the technique: “Her smile was sunshine.”', a:'metaphor'},
+  {q:'Name the technique: “buzzing bees” (repeated “b” sound).', a:'alliteration'},
+  {q:'Name the technique: “The bag weighed a tonne!” (a big exaggeration)', a:'hyperbole'},
+  {q:'Is the purpose to persuade, inform or entertain: a funny short story?', a:'to entertain'},
+  {q:'Author’s purpose: a brochure urging you to recycle?', a:'to persuade'},
+  {q:'Author’s purpose: an encyclopedia entry about volcanoes?', a:'to inform'},
+  {q:'What is onomatopoeia? Give an example.', a:'a word that sounds like its meaning, e.g. “bang” or “hiss”'},
+  {q:'What does the idiom “it’s raining cats and dogs” mean?', a:'it is raining very heavily'},
+  {q:'What is the difference between a simile and a metaphor?', a:'a simile uses “like” or “as”; a metaphor says one thing IS another'},
+  {q:'What does “reluctant” most likely mean in: “She was reluctant to dive in.”?', a:'unwilling / hesitant'},
+  {q:'Give a synonym for “ancient”.', a:'very old'},
+  {q:'Name the technique: “Boom! Crash!”', a:'onomatopoeia'},
+  {q:'What does “mood” mean in a text?', a:'the feeling or atmosphere it creates for the reader'},
+  {q:'What does the idiom “bite the bullet” mean?', a:'to face something difficult bravely'}
+];
+
+const COMP_S=[
+  {q:'Read: “Maya planted seeds in spring. By summer, bright sunflowers filled her garden.” — In which season did Maya plant the seeds?', a:'spring'},
+  {q:'Read: “Tom missed the bus, so he had to walk to school in the rain.” — Why did Tom walk to school?', a:'because he missed the bus'},
+  {q:'Read: “The puppy wagged its tail and barked happily when its owner came home.” — How did the puppy feel?', a:'happy / excited'},
+  {q:'Read: “There are eight planets in our solar system. Jupiter is the largest.” — Which planet is the largest?', a:'Jupiter'},
+  {q:'Read: “Sara saved her pocket money for six weeks to buy a new book.” — How long did Sara save?', a:'six weeks'},
+  {q:'Read: “The library is open 9 am to 5 pm on weekdays, but closed on Sundays.” — Is the library open on Sundays?', a:'No'},
+  {q:'Read: “Lifting the heavy box, Dad groaned and asked for help.” — Why did Dad ask for help?', a:'the box was heavy'},
+  {q:'Read: “First crack the eggs, then whisk them, and finally pour them into the pan.” — What do you do first?', a:'crack the eggs'},
+  {q:'Read: “The kookaburra laughed loudly at dawn, waking the whole campsite.” — When did the kookaburra laugh?', a:'at dawn'},
+  {q:'Read: “Although she was nervous, Priya walked on stage and began to sing.” — How did Priya feel beforehand?', a:'nervous'},
+  {q:'Read: “The shop sold apples, bananas and pears, but had run out of oranges.” — Which fruit had run out?', a:'oranges'},
+  {q:'Read: “Ben’s kite soared higher and higher until it was a tiny dot in the sky.” — What happened to the kite?', a:'it flew very high (became a tiny dot)'},
+  {q:'Read: “The recipe makes twelve muffins and takes twenty minutes to bake.” — How many muffins does it make?', a:'twelve'},
+  {q:'Read: “Snow fell all night, and in the morning the town was white and silent.” — What was the weather like?', a:'snowy'},
+  {q:'Read: “The team trained every morning before the big match on Saturday.” — When was the big match?', a:'Saturday'}
+];
+const COMP_H=[
+  {q:'Read: “Liam’s stomach rumbled as he stared at the empty fridge.” — What can we infer about Liam?', a:'he is hungry'},
+  {q:'Read: “The sky darkened, thunder rolled, and people hurried indoors.” — What is about to happen?', a:'a storm'},
+  {q:'Read: “Despite studying hard, Aisha felt butterflies before the exam.” — What does “butterflies” suggest here?', a:'she felt nervous'},
+  {q:'Read: “The old bridge creaked and swayed; the hikers turned back.” — Why did the hikers turn back?', a:'the bridge seemed unsafe'},
+  {q:'Read: “Coral reefs are vital homes for fish, but warming seas are bleaching them.” — What is the main idea?', a:'reefs are important but threatened by warming seas'},
+  {q:'Read: “Jack scrubbed and scrubbed, but the grass stain wouldn’t budge.” — What does “budge” mean here?', a:'move / come out'},
+  {q:'Read: “She slammed the door and refused to speak to anyone.” — How is she most likely feeling?', a:'angry / upset'},
+  {q:'Read: “The detective noticed muddy footprints leading to the open window.” — What might the detective conclude?', a:'someone went in or out through the window'},
+  {q:'Read: “Recycling reduces waste, saves energy and protects wildlife.” — What is the writer trying to do?', a:'persuade / encourage us to recycle'},
+  {q:'Read: “His grades plummeted after he stopped doing homework.” — What does “plummeted” mean?', a:'dropped or fell sharply'},
+  {q:'Read: “The crowd fell silent, then erupted into cheers as the runner crossed the line.” — What can you infer happened?', a:'the runner won or finished'},
+  {q:'Read: “Even in the middle of summer, Nan wore her thick coat.” — What might this suggest about Nan?', a:'she felt cold'},
+  {q:'Read: “The instructions were so confusing that nobody could build the shelf.” — Why couldn’t anyone build it?', a:'the instructions were unclear / confusing'},
+  {q:'Read: “Year after year, the festival drew bigger and bigger crowds.” — What does this tell us?', a:'the festival was becoming more popular'},
+  {q:'Read: “He tiptoed past the sleeping baby, holding his breath.” — Why did he tiptoe?', a:'to stay quiet and not wake the baby'}
+];
+
+const WRITE_S=[
+  {q:'Turn this into a question: “The dog is hungry.”', a:'“Is the dog hungry?”'},
+  {q:'Add an adjective: “The ___ castle stood on the hill.”', a:'e.g. “ancient”, “enormous” or “crumbling” — any describing word'},
+  {q:'Write a sentence about the beach that uses one adjective.', a:'e.g. “The golden sand stretched along the warm beach.”'},
+  {q:'Fix the capital letter and full stop: “we went to the park”', a:'“We went to the park.”'},
+  {q:'Expand this sentence with more detail: “The cat sat.”', a:'e.g. “The fluffy ginger cat sat lazily on the warm windowsill.”'},
+  {q:'Join into one sentence using “and”: “I like apples. I like pears.”', a:'“I like apples and pears.”'},
+  {q:'Write a strong opening line for a story about a lost dog.', a:'e.g. “Rex had never been so far from home before.”'},
+  {q:'Replace the dull word “nice”: “It was a nice day.”', a:'e.g. “glorious”, “beautiful” or “sunny”'},
+  {q:'Add commas to the list: “I packed shorts a hat and sunscreen.”', a:'“I packed shorts, a hat and sunscreen.”'},
+  {q:'Write a sentence that uses the word “because”.', a:'e.g. “We stayed inside because it was raining.”'},
+  {q:'Add speech marks: She said I am ready', a:'She said, “I am ready.”'},
+  {q:'Write a sentence that uses an adverb (telling how something is done).', a:'e.g. “The runner sprinted quickly to the line.” (adverb = quickly)'},
+  {q:'List three words you could use instead of “said”.', a:'e.g. whispered, shouted, replied, muttered, exclaimed'},
+  {q:'Write a sentence describing how a character feels on their first day at a new school.', a:'Look for an emotion word + reason, e.g. “Maya felt nervous as she walked through the gates.”'},
+  {q:'Turn this into an exclamation: “The fireworks were amazing.”', a:'e.g. “The fireworks were amazing!” or “How amazing the fireworks were!”'}
+];
+const WRITE_H=[
+  {q:'Write a complex sentence using “although”.', a:'e.g. “Although the test was hard, she stayed calm.” (Look for a subordinate clause.)'},
+  {q:'Write a persuasive sentence arguing for more sport at school.', a:'e.g. “Daily sport keeps students healthy and helps them focus.” (Look for an opinion + reason.)'},
+  {q:'Write a metaphor describing the rain.', a:'e.g. “The rain was a thousand tiny drummers on the roof.”'},
+  {q:'Write a simile to describe how fast a cheetah runs.', a:'e.g. “The cheetah ran like a bolt of lightning.”'},
+  {q:'Plan a narrative about a mysterious key: write the orientation, complication and resolution in one line each.', a:'Look for: setting & characters; a problem; how it is solved.'},
+  {q:'Write a topic sentence for a paragraph about why dogs make good pets.', a:'e.g. “Dogs make wonderful pets for many reasons.”'},
+  {q:'Improve with a stronger verb: “The man went down the street.”', a:'e.g. “The man marched / stormed / strolled down the street.”'},
+  {q:'Write a sentence using personification (give an object human qualities).', a:'e.g. “The old door groaned as it opened.”'},
+  {q:'Write the opening sentence of a persuasive letter to your principal.', a:'e.g. “I am writing to ask you to consider longer lunch breaks.” (Look for a clear purpose.)'},
+  {q:'Combine into one complex sentence using “even though”: “It was late. We kept working.”', a:'“Even though it was late, we kept working.”'},
+  {q:'Write a sentence that begins with a fronted adverbial (when / where / how).', a:'e.g. “Without warning, the lights went out.”'},
+  {q:'Write a short, dramatic sentence to build tension in a story.', a:'e.g. “Something moved in the shadows.”'},
+  {q:'Use a semicolon to join two related ideas.', a:'e.g. “The storm raged outside; inside, the children slept soundly.”'},
+  {q:'Write a concluding sentence for a paragraph about recycling.', a:'e.g. “By recycling every day, we can all help protect our planet.”'},
+  {q:'Rewrite more formally: “Hey, can you fix this ASAP?”', a:'e.g. “Could you please correct this as soon as possible?”'}
+];
+
+/* =================== TOPICS =================== */
+const POOLS={
+  reading:{s:READ_S,h:READ_H}, comprehension:{s:COMP_S,h:COMP_H},
+  writing:{s:WRITE_S,h:WRITE_H}, grammar:{s:GRAM_S,h:GRAM_H}, spelling:{s:SPELL_S,h:SPELL_H}
+};
+function GEN(id){return {simple:take(POOLS[id].s,12), hard:take(POOLS[id].h,12)};}
+
+const TOPICS=[
+  {id:'reading',       name:'Reading',       group:'understand', accent:'var(--coral)', intro:'Vocabulary, word meanings, prefixes and suffixes, text features and figurative language.'},
+  {id:'comprehension', name:'Comprehension', group:'understand', accent:'var(--teal)',  intro:'Read short texts and answer literal and inferential (“read between the lines”) questions.'},
+  {id:'writing',       name:'Writing',       group:'language',   accent:'var(--berry)', intro:'Build and improve sentences, add detail, and write for imaginative, informative and persuasive purposes.'},
+  {id:'grammar',       name:'Grammar',       group:'language',   accent:'var(--amber)', intro:'Word types, verb tenses, sentence structure, subject–verb agreement and punctuation.'},
+  {id:'spelling',      name:'Spelling',      group:'language',   accent:'var(--green)', intro:'Spelling patterns, plurals, suffixes, prefixes and tricky homophones.'}
+];
+const GROUP={understand:'Reading & Understanding', language:'Writing & Language'};
+
+function renderGrid(){
+  let html='', last='';
+  TOPICS.forEach((t,i)=>{
+    if(t.group!==last){html+=`<div class="strand-label">${GROUP[t.group]}</div>`;last=t.group;}
+    html+=`<div class="card" style="--accent:${t.accent}" onclick="openTopic('${t.id}')">
+      <div class="num">${i+1}</div><h3>${t.name}</h3><p>${t.intro}</p></div>`;
+  });
+  document.getElementById('topicGrid').innerHTML=html;
+}
+
+let current=null, diff='simple', data=null;
+function openTopic(id){
+  current=TOPICS.find(t=>t.id===id); diff='simple';
+  document.body.classList.remove('show-answers');
+  document.getElementById('ansBtn').textContent='Show answers';
+  document.getElementById('home').style.display='none';
+  document.getElementById('topicView').classList.add('active');
+  document.getElementById('tvTitle').textContent=current.name;
+  document.getElementById('tvStrand').textContent=GROUP[current.group];
+  document.getElementById('tvIntro').textContent=current.intro;
+  setDiff('simple',true);
+  window.scrollTo(0,0);
+}
+function goHome(){
+  document.getElementById('topicView').classList.remove('active');
+  document.getElementById('home').style.display='block';
+  window.scrollTo(0,0);
+}
+function setDiff(d,skip){
+  diff=d;
+  document.getElementById('tabSimple').classList.toggle('on',d==='simple');
+  document.getElementById('tabHard').classList.toggle('on',d==='hard');
+  if(!skip||!data) data=GEN(current.id);
+  renderQuestions();
+}
+function regen(){data=GEN(current.id);renderQuestions();}
+function renderQuestions(){
+  const list=diff==='simple'?data.simple:data.hard;
+  document.getElementById('wsTitle').innerHTML=
+    `${current.name} — Worksheet <span class="pill ${diff==='simple'?'green':'berry'}">${diff} · ${list.length} questions</span>`;
+  document.getElementById('qList').innerHTML=list.map(item=>`<li>
+      <div class="qtext">${item.q}</div>
+      <button class="reveal" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Reveal answer</button>
+      <div class="ans">${item.a}</div></li>`).join('');
+}
+function toggleAnswers(){
+  const on=document.body.classList.toggle('show-answers');
+  document.getElementById('ansBtn').textContent=on?'Hide answers':'Show answers';
+}
+renderGrid();
+</script>
+<script src="site.js" defer></script>
+</body>
+</html>

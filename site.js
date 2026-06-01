@@ -14,7 +14,7 @@
    ======================================================================= */
 
 const SUBJECTS = [
-  { name:'English',              short:'English',   file:'english.html',   ready:false,
+  { name:'English',              short:'English',   file:'english.html',   ready:true,
     desc:'Reading, writing, spelling, grammar and comprehension.',
     accent:'var(--coral)',  dk:'var(--coral-dk)',  icon:'book' },
 
