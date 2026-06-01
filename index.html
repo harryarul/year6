@@ -97,82 +97,9 @@
     </div>
   </header>
 
-  <div class="grid" id="grid"></div>
-
-  <footer class="site">
-    <p>Aligned to the NSW curriculum, Stage 3 (Years 5–6).</p>
-  </footer>
+  <div class="grid" id="subject-grid"></div>
 </div>
 
-<script>
-/* =====================================================================
-   SUBJECT TILES — edit here
-   ---------------------------------------------------------------------
-   To switch a subject ON: set  ready:true  and make sure a page with the
-   matching "file" name sits in this same /year6/ folder.
-   You can freely change the "desc" text once you have your content.
-   ===================================================================== */
-const SUBJECTS=[
-  {
-    name:'English', file:'english.html', ready:false,
-    desc:'Reading, writing, spelling, grammar and comprehension.',
-    accent:'var(--coral)', dk:'var(--coral-dk)', icon:'book'
-  },
-  {
-    name:'Mathematics', file:'maths.html', ready:true,
-    desc:'Number, measurement, space, statistics — with practice worksheets.',
-    accent:'var(--teal)', dk:'var(--teal-dk)', icon:'maths'
-  },
-  {
-    name:'Science & Technology', file:'science.html', ready:false,
-    desc:'Living things, materials, forces, and the digital world.',
-    accent:'var(--green)', dk:'var(--green-dk)', icon:'flask'
-  },
-  {
-    name:'History', file:'history.html', ready:false,
-    desc:'Australia as a nation, democracy, and people of the past.',
-    accent:'var(--amber)', dk:'var(--amber-dk)', icon:'clock'
-  },
-  {
-    name:'Geography', file:'geography.html', ready:false,
-    desc:'Places, environments, maps and the wider world.',
-    accent:'var(--ocean)', dk:'var(--ocean-dk)', icon:'globe'
-  },
-  {
-    name:'Creative Arts', file:'arts.html', ready:false,
-    desc:'Visual arts, music, drama and dance.',
-    accent:'var(--berry)', dk:'var(--berry-dk)', icon:'palette'
-  },
-  {
-    name:'Health & PE', file:'pdhpe.html', ready:false,
-    desc:'Healthy bodies, wellbeing, movement and games.',
-    accent:'var(--leaf)', dk:'var(--leaf-dk)', icon:'heart'
-  }
-];
-
-/* simple inline SVG icon set */
-const ICONS={
-  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6C10 4.5 6.5 4.5 4 6v13c2.5-1.5 6-1.5 8 0 2-1.5 5.5-1.5 8 0V6c-2.5-1.5-6-1.5-8 0z"/><path d="M12 6v13"/></svg>',
-  maths:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h6M7 5v6"/><path d="M14.5 6l4 4M18.5 6l-4 4"/><path d="M4 17h6"/><circle cx="7" cy="14.3" r=".6" fill="currentColor" stroke="none"/><circle cx="7" cy="19.7" r=".6" fill="currentColor" stroke="none"/><path d="M14 15h6M14 19h6"/></svg>',
-  flask:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6l-4.5 8.5A2 2 0 0 0 7.3 21h9.4a2 2 0 0 0 1.8-3.5L14 9V3"/><path d="M7.5 15h9"/></svg>',
-  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
-  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.4 2.6 14.6 0 17M12 3.5c-2.6 2.4-2.6 14.6 0 17"/></svg>',
-  palette:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 0 0 0 17c1.4 0 1.9-1 1.9-1.9 0-1.4 1-1.9 1.9-1.9h1a3.8 3.8 0 0 0 3.7-3.8c0-4.8-3.8-7.4-8.5-7.4z"/><circle cx="8" cy="11" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="11" r="1" fill="currentColor" stroke="none"/></svg>',
-  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.6A3.6 3.6 0 0 1 12 7.2 3.6 3.6 0 0 1 19 10.4C19 15.4 12 20 12 20z"/><path d="M7.5 12h2l1-2 2 4 1-2h2"/></svg>'
-};
-
-const grid=document.getElementById('grid');
-grid.innerHTML=SUBJECTS.map(s=>{
-  const inner=`
-    <div class="icon">${ICONS[s.icon]||''}</div>
-    <h3>${s.name}</h3>
-    <p>${s.desc}</p>
-    ${s.ready?'<span class="cta">Start learning →</span>':'<span class="soon-badge">Coming soon</span>'}`;
-  const style=`--accent:${s.accent};--accent-dk:${s.dk}`;
-  return s.ready
-    ? `<a class="tile ready" href="${s.file}" style="${style}">${inner}</a>`
-    : `<div class="tile soon" style="${style}">${inner}</div>`;
-}).join('');
-</script>
+<script src="site.js" defer></script>
 </body>
 </html>
