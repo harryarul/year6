@@ -83,9 +83,13 @@
   .backbtn{
     background:#fff;border:2px solid var(--line);border-radius:30px;padding:8px 16px;
     font-family:'Baloo 2';font-size:.95rem;cursor:pointer;color:var(--teal-dk);
-    box-shadow:0 3px 0 rgba(0,0,0,.06);margin-bottom:18px
+    box-shadow:0 3px 0 rgba(0,0,0,.06);text-decoration:none;display:inline-block
   }
   .backbtn:hover{background:var(--green-soft)}
+  .backbtn.hub{color:#fff;background:var(--coral);border-color:transparent;box-shadow:0 3px 0 var(--coral-dk)}
+  .backbtn.hub:hover{background:var(--coral-dk)}
+  .nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+  #home .nav-row{margin-top:6px}
   .topic-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 16px;margin-bottom:6px}
   .topic-head h2{font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink)}
   .topic-head .badge{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;
@@ -136,7 +140,7 @@
 
   @media print{
     body{background:#fff}
-    header.site,.grid,.toolbar,.backbtn,.reveal,footer.site .noprint{display:none!important}
+    header.site,.grid,.toolbar,.backbtn,.nav-row,.reveal,footer.site .noprint{display:none!important}
     .topic-view{display:block!important}
     ol.questions li{box-shadow:none;break-inside:avoid}
     .card{display:none}
@@ -154,12 +158,18 @@
 
   <!-- HOME GRID -->
   <div id="home">
+    <div class="nav-row">
+      <a class="backbtn hub" href="index.html">↖ Year 6 Hub</a>
+    </div>
     <div class="grid" id="topicGrid"></div>
   </div>
 
   <!-- TOPIC VIEW -->
   <div class="topic-view" id="topicView">
-    <button class="backbtn" onclick="goHome()">← All topics</button>
+    <div class="nav-row">
+      <a class="backbtn hub" href="index.html">↖ Year 6 Hub</a>
+      <button class="backbtn" onclick="goHome()">← All topics</button>
+    </div>
     <div class="topic-head">
       <h2 id="tvTitle"></h2>
       <span class="badge" id="tvStrand"></span>
@@ -179,6 +189,11 @@
     <div class="ws-title" id="wsTitle"></div>
     <p class="ws-note">Work them out in your book or print this page. Try to estimate first, then check!</p>
     <ol class="questions" id="qList"></ol>
+
+    <div class="nav-row" style="justify-content:center;margin-top:24px">
+      <a class="backbtn hub" href="index.html">↖ Back to Year 6 Hub</a>
+      <button class="backbtn" onclick="goHome()">← All maths topics</button>
+    </div>
   </div>
 </div>
 
