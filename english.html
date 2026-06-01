@@ -109,6 +109,16 @@
     font-size:.85rem;cursor:pointer;padding:0;text-decoration:underline}
   body.show-answers .reveal{display:none}
 
+  /* comprehension passages */
+  .passage{background:#fff;border:2px solid var(--line);border-left:6px solid var(--teal);
+    border-radius:14px;padding:16px 20px;margin:6px 0 12px;box-shadow:0 3px 0 rgba(0,0,0,.04)}
+  .passage .ptag{display:inline-block;font-family:'Baloo 2';font-size:.68rem;text-transform:uppercase;
+    letter-spacing:.6px;background:var(--teal);color:#fff;padding:3px 11px;border-radius:14px;margin-bottom:8px}
+  .passage h4{font-family:'Baloo 2';font-size:1.18rem;color:var(--ink);margin-bottom:8px}
+  .passage p{font-size:1rem;line-height:1.65;color:#3a362f}
+  .qgroup-label{font-family:'Baloo 2';font-weight:700;color:var(--teal-dk);margin:2px 0 10px;font-size:.98rem}
+  .qgroup-label + ol.questions{margin-bottom:22px}
+
   @media print{
     body{background:#fff}
     header.site,.grid,.toolbar,.backbtn,.nav-row,.reveal{display:none!important}
@@ -158,8 +168,8 @@
     </div>
 
     <div class="ws-title" id="wsTitle"></div>
-    <p class="ws-note">For writing tasks there is no single right answer — the answer shows an example or what to aim for.</p>
-    <ol class="questions" id="qList"></ol>
+    <p class="ws-note" id="wsNote"></p>
+    <div id="qList"></div>
 
     <div class="nav-row" style="justify-content:center;margin-top:24px">
       <a class="backbtn hub" href="index.html">↖ Back to Year 6 Hub</a>
@@ -284,39 +294,81 @@ const READ_H=[
   {q:'What does the idiom “bite the bullet” mean?', a:'to face something difficult bravely'}
 ];
 
-const COMP_S=[
-  {q:'Read: “Maya planted seeds in spring. By summer, bright sunflowers filled her garden.” — In which season did Maya plant the seeds?', a:'spring'},
-  {q:'Read: “Tom missed the bus, so he had to walk to school in the rain.” — Why did Tom walk to school?', a:'because he missed the bus'},
-  {q:'Read: “The puppy wagged its tail and barked happily when its owner came home.” — How did the puppy feel?', a:'happy / excited'},
-  {q:'Read: “There are eight planets in our solar system. Jupiter is the largest.” — Which planet is the largest?', a:'Jupiter'},
-  {q:'Read: “Sara saved her pocket money for six weeks to buy a new book.” — How long did Sara save?', a:'six weeks'},
-  {q:'Read: “The library is open 9 am to 5 pm on weekdays, but closed on Sundays.” — Is the library open on Sundays?', a:'No'},
-  {q:'Read: “Lifting the heavy box, Dad groaned and asked for help.” — Why did Dad ask for help?', a:'the box was heavy'},
-  {q:'Read: “First crack the eggs, then whisk them, and finally pour them into the pan.” — What do you do first?', a:'crack the eggs'},
-  {q:'Read: “The kookaburra laughed loudly at dawn, waking the whole campsite.” — When did the kookaburra laugh?', a:'at dawn'},
-  {q:'Read: “Although she was nervous, Priya walked on stage and began to sing.” — How did Priya feel beforehand?', a:'nervous'},
-  {q:'Read: “The shop sold apples, bananas and pears, but had run out of oranges.” — Which fruit had run out?', a:'oranges'},
-  {q:'Read: “Ben’s kite soared higher and higher until it was a tiny dot in the sky.” — What happened to the kite?', a:'it flew very high (became a tiny dot)'},
-  {q:'Read: “The recipe makes twelve muffins and takes twenty minutes to bake.” — How many muffins does it make?', a:'twelve'},
-  {q:'Read: “Snow fell all night, and in the morning the town was white and silent.” — What was the weather like?', a:'snowy'},
-  {q:'Read: “The team trained every morning before the big match on Saturday.” — When was the big match?', a:'Saturday'}
+const COMP_PASS_S=[
+  { title:'The Lost Library Book', text:'Zara loved reading more than anything. Every Friday she borrowed a new book from the school library. One Friday she chose a thick adventure story about pirates. That weekend she read it everywhere — in the car, in the garden, even under her blanket with a torch. On Monday morning the book was nowhere to be found. Zara searched her bag, her bedroom and the kitchen, but it had vanished. Just as she was about to give up, she spotted a corner of the cover poking out from under the sofa cushions. Sighing with relief, she slipped the book into her bag and hurried to school, promising herself to be more careful next time.',
+    qs:[
+      {q:'Who is the main character?', a:'Zara'},
+      {q:'What kind of story was the book she chose?', a:'an adventure story about pirates'},
+      {q:'Name two places Zara read the book.', a:'any two of: the car, the garden, under her blanket'},
+      {q:'Where did Zara finally find the book?', a:'under the sofa cushions'},
+      {q:'How did Zara feel when she found it?', a:'relieved'},
+      {q:'What did Zara promise herself?', a:'to be more careful next time'}
+    ]},
+  { title:'Honey Bees', text:'Honey bees are small but very important insects. They live together in a hive, where thousands of bees work as a team. Each hive has one queen bee, whose main job is to lay eggs. Worker bees fly from flower to flower, collecting a sweet liquid called nectar. Back at the hive, they turn the nectar into honey and store it in tiny wax cells. Bees do more than make honey, though. As they move between flowers, they carry pollen, which helps plants make seeds and fruit. Without bees, many of the foods we enjoy, such as apples and strawberries, would be much harder to grow.',
+    qs:[
+      {q:'Where do honey bees live?', a:'in a hive'},
+      {q:'What is the main job of the queen bee?', a:'to lay eggs'},
+      {q:'What do worker bees collect from flowers?', a:'nectar'},
+      {q:'What do bees turn nectar into?', a:'honey'},
+      {q:'Besides making honey, how do bees help plants?', a:'they carry pollen, which helps plants make seeds and fruit'},
+      {q:'Name one food that would be harder to grow without bees.', a:'apples (or strawberries)'}
+    ]},
+  { title:'First Day at the Pool', text:'Marcus stood at the edge of the swimming pool, his toes curling over the cold tiles. It was his first swimming lesson, and his stomach felt full of butterflies. The water looked deep and the other children seemed so confident. His instructor, Mr Lee, smiled kindly and held out his hand. ‘We will start in the shallow end,’ he said. Slowly, Marcus stepped down the ladder. The water was warmer than he expected. By the end of the lesson, Marcus had learned to float on his back and even put his face in the water. As he walked home, he could not stop grinning.',
+    qs:[
+      {q:'Where is the story set?', a:'at a swimming pool'},
+      {q:'What lesson was Marcus having?', a:'his first swimming lesson'},
+      {q:'What does “butterflies” in his stomach tell us about how he felt?', a:'he was nervous'},
+      {q:'Who was Marcus’s instructor?', a:'Mr Lee'},
+      {q:'Name one thing Marcus learned by the end of the lesson.', a:'to float on his back (or put his face in the water)'},
+      {q:'How did Marcus feel as he walked home?', a:'happy — he could not stop grinning'}
+    ]},
+  { title:'The Sydney Opera House', text:'The Sydney Opera House is one of the most famous buildings in the world. It sits beside the water at Sydney Harbour and is known for its white, sail-shaped roofs. The building was designed by a Danish architect named Jørn Utzon. It took about 14 years to build and finally opened in 1973. Today the Opera House is used for concerts, plays and ballet, and millions of people visit it every year. Its unique shape makes it easy to recognise, and it has become a symbol of Australia.',
+    qs:[
+      {q:'Beside what does the Sydney Opera House sit?', a:'the water at Sydney Harbour'},
+      {q:'What are its roofs shaped like?', a:'sails'},
+      {q:'Who designed the building?', a:'Jørn Utzon, a Danish architect'},
+      {q:'In what year did it open?', a:'1973'},
+      {q:'Name one thing the Opera House is used for.', a:'concerts (or plays / ballet)'},
+      {q:'What has the Opera House become a symbol of?', a:'Australia'}
+    ]}
 ];
-const COMP_H=[
-  {q:'Read: “Liam’s stomach rumbled as he stared at the empty fridge.” — What can we infer about Liam?', a:'he is hungry'},
-  {q:'Read: “The sky darkened, thunder rolled, and people hurried indoors.” — What is about to happen?', a:'a storm'},
-  {q:'Read: “Despite studying hard, Aisha felt butterflies before the exam.” — What does “butterflies” suggest here?', a:'she felt nervous'},
-  {q:'Read: “The old bridge creaked and swayed; the hikers turned back.” — Why did the hikers turn back?', a:'the bridge seemed unsafe'},
-  {q:'Read: “Coral reefs are vital homes for fish, but warming seas are bleaching them.” — What is the main idea?', a:'reefs are important but threatened by warming seas'},
-  {q:'Read: “Jack scrubbed and scrubbed, but the grass stain wouldn’t budge.” — What does “budge” mean here?', a:'move / come out'},
-  {q:'Read: “She slammed the door and refused to speak to anyone.” — How is she most likely feeling?', a:'angry / upset'},
-  {q:'Read: “The detective noticed muddy footprints leading to the open window.” — What might the detective conclude?', a:'someone went in or out through the window'},
-  {q:'Read: “Recycling reduces waste, saves energy and protects wildlife.” — What is the writer trying to do?', a:'persuade / encourage us to recycle'},
-  {q:'Read: “His grades plummeted after he stopped doing homework.” — What does “plummeted” mean?', a:'dropped or fell sharply'},
-  {q:'Read: “The crowd fell silent, then erupted into cheers as the runner crossed the line.” — What can you infer happened?', a:'the runner won or finished'},
-  {q:'Read: “Even in the middle of summer, Nan wore her thick coat.” — What might this suggest about Nan?', a:'she felt cold'},
-  {q:'Read: “The instructions were so confusing that nobody could build the shelf.” — Why couldn’t anyone build it?', a:'the instructions were unclear / confusing'},
-  {q:'Read: “Year after year, the festival drew bigger and bigger crowds.” — What does this tell us?', a:'the festival was becoming more popular'},
-  {q:'Read: “He tiptoed past the sleeping baby, holding his breath.” — Why did he tiptoe?', a:'to stay quiet and not wake the baby'}
+const COMP_PASS_H=[
+  { title:'The Storm', text:'By late afternoon, the sky over the farm had turned an angry shade of grey. Nadia watched from the kitchen window as the wind bent the old gum trees almost to the ground. Her father hurried across the yard, herding the last of the sheep into the barn. ‘Close the windows!’ he called, his voice barely carrying over the rising gale. Nadia ran from room to room, latching every window tight. Moments later, the first heavy drops struck the roof like marbles, and then the rain came down in sheets. The power flickered once, twice, and died. In the sudden darkness, Nadia felt for the torch she had placed on the table earlier — she had known, somehow, that they would need it.',
+    qs:[
+      {q:'What time of day is it in the passage?', a:'late afternoon'},
+      {q:'What can you infer is about to happen?', a:'a big storm'},
+      {q:'Why was Nadia’s father herding the sheep into the barn?', a:'to keep them safe from the storm'},
+      {q:'What does the simile “struck the roof like marbles” describe?', a:'the heavy raindrops hitting the roof'},
+      {q:'What happened to the power?', a:'it flickered, then went out (died)'},
+      {q:'The last line suggests Nadia had expected this. How do you know?', a:'she had placed the torch ready earlier, knowing they would need it'}
+    ]},
+  { title:'Why We Should Protect the Reef', text:'The Great Barrier Reef, stretching more than 2,000 kilometres along the coast of Queensland, is the largest living structure on Earth. It is home to thousands of species of fish, coral, turtles and other sea creatures. Sadly, the reef is under threat. Rising sea temperatures cause coral to lose its colour and die, a process known as bleaching. Pollution and litter from the land also harm the delicate ecosystem. Scientists warn that if we do not act soon, large parts of the reef could disappear forever. There are things we can all do to help, such as reducing waste, using less energy and supporting organisations that protect the ocean. The reef has survived for millions of years — it is up to us to make sure it survives for millions more.',
+    qs:[
+      {q:'Along which coast is the Great Barrier Reef found?', a:'the coast of Queensland'},
+      {q:'What does the text say makes the reef special?', a:'it is the largest living structure on Earth'},
+      {q:'What does “bleaching” mean in this passage?', a:'coral losing its colour and dying'},
+      {q:'Name two things that threaten the reef.', a:'rising sea temperatures and pollution / litter'},
+      {q:'What is the author’s main purpose in this text?', a:'to persuade us to protect the reef'},
+      {q:'Name one thing the text says we can do to help.', a:'reduce waste (or use less energy / support ocean organisations)'}
+    ]},
+  { title:'The Audition', text:'Priya’s hands trembled as she waited in the wings, clutching her sheet music. For weeks she had rehearsed until her fingers ached, yet now every note seemed to flee from her memory. The girl before her finished to warm applause and walked off stage beaming. ‘Next!’ called the judge, not unkindly. Priya forced her legs to move. She sat at the piano, took a slow breath, and let her hands settle on the keys. The first few bars wavered, but then something shifted. The music seemed to play itself, flowing from her fingers as if it had a life of its own. When she finished there was a heartbeat of silence — and then the room erupted. Priya allowed herself, at last, to smile.',
+    qs:[
+      {q:'What is Priya auditioning to do?', a:'play the piano'},
+      {q:'Where is Priya waiting at the start?', a:'in the wings (at the side of the stage)'},
+      {q:'What does it mean that the notes “seemed to flee from her memory”?', a:'she felt she was forgetting the music'},
+      {q:'How did Priya feel before her turn? Give evidence.', a:'nervous — her hands trembled'},
+      {q:'What does “the room erupted” tell us happened?', a:'the audience clapped and cheered loudly'},
+      {q:'How does Priya feel at the end, and how do you know?', a:'relieved / happy — she finally allowed herself to smile'}
+    ]},
+  { title:'Sleep and the Brain', text:'Most children your age need between nine and eleven hours of sleep each night, yet many get far less. While we sleep, our bodies may be still, but our brains are remarkably busy. During the night the brain sorts through everything we learned during the day, storing important memories and clearing away information it no longer needs. This is one reason why a good night’s sleep before a test can be more useful than late-night study. Sleep also helps the body grow, repair itself and fight off illness. Screens, however, can make sleep harder: the bright light from phones and tablets tricks the brain into thinking it is still daytime. Experts suggest switching off devices at least an hour before bed to give the brain the rest it needs.',
+    qs:[
+      {q:'How many hours of sleep does the text say children your age need?', a:'between nine and eleven hours'},
+      {q:'What does the brain do with the day’s learning while we sleep?', a:'it sorts it, storing important memories and clearing away what it no longer needs'},
+      {q:'Why might sleeping before a test help more than late-night study?', a:'because sleep helps the brain store and organise what you have learned'},
+      {q:'Name one way sleep helps the body, apart from memory.', a:'it helps the body grow / repair itself / fight off illness'},
+      {q:'How do screens make sleep harder?', a:'their bright light tricks the brain into thinking it is still daytime'},
+      {q:'What is the main idea of this passage?', a:'sleep is very important for the brain and body, and screens can disrupt it'}
+    ]}
 ];
 
 const WRITE_S=[
@@ -356,10 +408,13 @@ const WRITE_H=[
 
 /* =================== TOPICS =================== */
 const POOLS={
-  reading:{s:READ_S,h:READ_H}, comprehension:{s:COMP_S,h:COMP_H},
+  reading:{s:READ_S,h:READ_H},
   writing:{s:WRITE_S,h:WRITE_H}, grammar:{s:GRAM_S,h:GRAM_H}, spelling:{s:SPELL_S,h:SPELL_H}
 };
-function GEN(id){return {simple:take(POOLS[id].s,12), hard:take(POOLS[id].h,12)};}
+function GEN(id){
+  if(id==='comprehension') return {simple:take(COMP_PASS_S,2), hard:take(COMP_PASS_H,2)};
+  return {simple:take(POOLS[id].s,12), hard:take(POOLS[id].h,12)};
+}
 
 const TOPICS=[
   {id:'reading',       name:'Reading',       group:'understand', accent:'var(--coral)', intro:'Vocabulary, word meanings, prefixes and suffixes, text features and figurative language.'},
@@ -406,14 +461,35 @@ function setDiff(d,skip){
   renderQuestions();
 }
 function regen(){data=GEN(current.id);renderQuestions();}
-function renderQuestions(){
-  const list=diff==='simple'?data.simple:data.hard;
-  document.getElementById('wsTitle').innerHTML=
-    `${current.name} — Worksheet <span class="pill ${diff==='simple'?'green':'berry'}">${diff} · ${list.length} questions</span>`;
-  document.getElementById('qList').innerHTML=list.map(item=>`<li>
+function qItem(item){
+  return `<li>
       <div class="qtext">${item.q}</div>
       <button class="reveal" onclick="this.nextElementSibling.style.display='block';this.style.display='none'">Reveal answer</button>
-      <div class="ans">${item.a}</div></li>`).join('');
+      <div class="ans">${item.a}</div></li>`;
+}
+function renderQuestions(){
+  const isComp = current.id==='comprehension';
+  const sel = diff==='simple'?data.simple:data.hard;
+  let count, body;
+  if(isComp){
+    count = sel.reduce((n,p)=>n+p.qs.length,0);
+    body = sel.map((p,idx)=>`
+      <div class="passage"><span class="ptag">Passage ${idx+1}</span>
+        <h4>${p.title}</h4><p>${p.text}</p></div>
+      <div class="qgroup-label">Questions about Passage ${idx+1}: ${p.title}</div>
+      <ol class="questions">${p.qs.map(qItem).join('')}</ol>`).join('');
+  } else {
+    count = sel.length;
+    body = `<ol class="questions">${sel.map(qItem).join('')}</ol>`;
+  }
+  document.getElementById('wsTitle').innerHTML=
+    `${current.name} — Worksheet <span class="pill ${diff==='simple'?'green':'berry'}">${diff} · ${count} questions</span>`;
+  document.getElementById('qList').innerHTML=body;
+  document.getElementById('wsNote').textContent = isComp
+    ? 'Read each passage carefully, then answer the questions about it.'
+    : current.id==='writing'
+      ? 'For writing tasks there is no single right answer — the answer shows an example or what to aim for.'
+      : 'Work them out in your book, then check with “Show answers”.';
 }
 function toggleAnswers(){
   const on=document.body.classList.toggle('show-answers');
