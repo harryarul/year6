@@ -101,6 +101,7 @@
   .tab{border:none;background:transparent;font-family:'Baloo 2';font-size:1rem;padding:8px 22px;border-radius:24px;cursor:pointer;color:#8a8275}
   .tab.simple.on{background:var(--green);color:#fff}
   .tab.hard.on{background:var(--coral);color:#fff}
+  .tab.complex.on{background:#b23a48;color:#fff}
   .btn{
     border:none;font-family:'Baloo 2';font-size:.95rem;padding:9px 18px;border-radius:24px;
     cursor:pointer;color:#fff;background:var(--teal);box-shadow:0 4px 0 var(--teal-dk);transition:transform .1s
@@ -113,6 +114,7 @@
   .ws-title .pill{font-size:.7rem;font-weight:800;text-transform:uppercase;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
   .pill.green{background:var(--green-soft);color:var(--green)}
   .pill.coral{background:var(--orange-soft);color:var(--coral-dk)}
+  .pill.maroon{background:#f6e1e4;color:#b23a48}
   .ws-note{color:#9a917f;font-size:.85rem;font-weight:600;margin-bottom:16px}
 
   ol.questions{list-style:none;counter-reset:q}
@@ -180,6 +182,7 @@
       <div class="tabs">
         <button class="tab simple on" id="tabSimple" onclick="setDiff('simple')">Simple</button>
         <button class="tab hard" id="tabHard" onclick="setDiff('hard')">Hard</button>
+        <button class="tab complex" id="tabComplex" onclick="setDiff('complex')">Complex</button>
       </div>
       <button class="btn" onclick="regen()">↻ New questions</button>
       <button class="btn sun" onclick="toggleAnswers()" id="ansBtn">Show answers</button>
@@ -467,6 +470,120 @@ GEN['chance']=()=>{
   return {simple,hard};
 };
 
+/* ---------- complex (extension) generators ---------- */
+function primeFactors(n){const f=[];let x=n;for(let p=2;p*p<=x;p++){while(x%p===0){f.push(p);x/=p;}}if(x>1)f.push(x);return f;}
+function linExpr(d,c){let s=(d===1?'n':d+'n');if(c>0)s+=' + '+c;else if(c<0)s+=' − '+(-c);return s;}
+const CGEN={
+ 'whole-numbers':()=>{const o=[];
+   for(let i=0;i<3;i++){const n=ri(1,9)*1e9+ri(0,999999999);const places=[[1e6,'millions'],[1e7,'ten-millions'],[1e8,'hundred-millions'],[1e3,'thousands']];const p=pick(places);const digit=Math.floor(n/p[0])%10;o.push({q:`What is the value of the ${p[1]} digit in ${sp(n)}?`,a:sp(digit*p[0])});}
+   for(let i=0;i<3;i++){const n=pick([36,48,60,72,84,90,96,120,126,144,150,180]);o.push({q:`Write ${n} as a product of its prime factors.`,a:primeFactors(n).join(' × ')});}
+   for(let i=0;i<3;i++){const a=ri(8,40),b=ri(8,40);o.push({q:`Find the highest common factor (HCF) of ${a} and ${b}.`,a:''+gcd(a,b)});}
+   for(let i=0;i<3;i++){const a=ri(3,12),b=ri(3,12);o.push({q:`Find the lowest common multiple (LCM) of ${a} and ${b}.`,a:''+lcm(a,b)});}
+   return o;},
+ 'add-subtract':()=>{const o=[];
+   for(let i=0;i<4;i++){const a=ri(100,999)/10,b=ri(100,999)/100,c=ri(10,99)/10;o.push({q:`${a.toFixed(2)} + ${b.toFixed(2)} + ${c.toFixed(2)} = ?`,a:(a+b+c).toFixed(2)});}
+   for(let i=0;i<3;i++){const a=ri(100000,999999),b=ri(10000,99999);o.push({q:`${sp(a)} − ${sp(b)} = ?`,a:sp(a-b)});}
+   for(let i=0;i<3;i++){const start=ri(2000,5000),earn=ri(500,3000),spend=ri(300,2000);o.push({q:`A club had $${sp(start)}. It raised $${sp(earn)} more, then spent $${sp(spend)}. How much is left?`,a:'$'+sp(start+earn-spend)});}
+   for(let i=0;i<2;i++){const total=ri(50,99)/10,part=ri(10,49)/10;o.push({q:`${part.toFixed(2)} + ☐ = ${total.toFixed(2)}. Find the missing number.`,a:(total-part).toFixed(2)});}
+   return o;},
+ 'multiply-divide':()=>{const o=[];
+   for(let i=0;i<3;i++){const a=ri(101,999),b=ri(101,999);o.push({q:`${a} × ${b} = ?`,a:''+(a*b)});}
+   for(let i=0;i<3;i++){const b=ri(12,29),q=ri(40,90),r=ri(1,b-1);o.push({q:`${b*q+r} ÷ ${b} = ? (give the remainder)`,a:`${q} remainder ${r}`});}
+   for(let i=0;i<3;i++){const a=ri(2,9),b=ri(2,9),c=ri(2,9),d=ri(2,9);o.push({q:`${a} × (${b} + ${c}) − ${d} = ?`,a:''+(a*(b+c)-d)});}
+   for(let i=0;i<3;i++){const boxes=ri(6,15),per=ri(8,20),people=ri(2,6);const total=boxes*per;o.push({q:`${boxes} boxes hold ${per} pencils each, shared equally among ${people} classes. How many pencils per class?`,a:(total%people===0)?`${total/people} each`:`${Math.floor(total/people)} each, ${total%people} left over`});}
+   return o;},
+ 'fractions':()=>{const o=[];
+   for(let i=0;i<3;i++){let d1=pick([2,3,4,5,6]),d2=pick([2,3,4,5,6]);while(d2===d1)d2=pick([2,3,4,5,6]);const a=ri(1,d1-1),b=ri(1,d2-1),L=lcm(d1,d2);o.push({q:`${a}/${d1} + ${b}/${d2} = ?`,a:frac(a*(L/d1)+b*(L/d2),L)});}
+   for(let i=0;i<3;i++){const d1=pick([2,3,4,5]),d2=pick([2,3,4,5]),a=ri(1,d1-1),b=ri(1,d2-1);o.push({q:`${a}/${d1} × ${b}/${d2} = ?`,a:frac(a*b,d1*d2)});}
+   for(let i=0;i<3;i++){const d=pick([2,3,4,5]),n=ri(1,d-1),w=ri(2,5);o.push({q:`${n}/${d} ÷ ${w} = ?`,a:frac(n,d*w)});}
+   for(let i=0;i<3;i++){const pct=pick([10,20,25,50]),mult={10:10,20:5,25:4,50:2}[pct],X=mult*ri(3,15),Y=X*pct/100;o.push({q:`${pct}% of a number is ${Y}. What is the number?`,a:''+X});}
+   return o;},
+ 'patterns':()=>{const o=[];
+   for(let i=0;i<3;i++){const d=ri(2,6),a=ri(1,6);const seq=[a,a+d,a+2*d,a+3*d];o.push({q:`Find a rule for the nth term: ${seq.join(', ')}, ...`,a:linExpr(d,a-d)});}
+   for(let i=0;i<3;i++){const a=ri(2,6),n=ri(3,9),b=ri(1,15),c=a*n+b;o.push({q:`Solve for n: ${a}n + ${b} = ${c}.`,a:'n = '+n});}
+   for(let i=0;i<3;i++){const m=ri(2,6),b=ri(1,9),x=ri(2,12),Y=m*x+b;o.push({q:`A machine multiplies the input by ${m}, then adds ${b}. The output is ${Y}. What was the input?`,a:''+x});}
+   const seqs=[{q:'Continue the square numbers: 1, 4, 9, 16, ___ , ___',a:'25, 36'},{q:'Continue the triangular numbers: 1, 3, 6, 10, ___ , ___',a:'15, 21'},{q:'Continue: 2, 4, 8, 16, ___ (doubling)',a:'32'},{q:'Continue: 1, 8, 27, 64, ___ (cube numbers)',a:'125'}];
+   o.push(...take(seqs,3));
+   return o;},
+ 'money':()=>{const o=[];
+   for(let i=0;i<3;i++){const p=ri(5,40),q=ri(2,8),pct=pick([10,20,25,50]);const total=p*q;o.push({q:`Buy ${q} items at ${money(p)} each, then take ${pct}% off the total. What do you pay?`,a:money(total*(1-pct/100))});}
+   for(let i=0;i<3;i++){const n=ri(3,8),each=ri(4,25);const C=n*each;o.push({q:`A bill of ${money(C)} is split equally among ${n} friends. How much does each pay?`,a:money(C/n)});}
+   for(let i=0;i<3;i++){const B=ri(50,200),S=ri(10,B-5);o.push({q:`You have ${money(B)} and spend ${money(S)}. What percentage of your money is left? (nearest whole %)`,a:Math.round((B-S)/B*100)+'%'});}
+   for(let i=0;i<3;i++){const cost=ri(20,80),pct=pick([10,20,25,50]);o.push({q:`A shop buys an item for ${money(cost)} and marks it up by ${pct}%. What is the selling price?`,a:money(cost*(1+pct/100))});}
+   return o;},
+ 'length':()=>{const o=[];
+   for(let i=0;i<3;i++){const km=ri(15,95)/10;o.push({q:`Convert ${km} km to metres.`,a:`${km*1000} m`});}
+   for(let i=0;i<3;i++){const km=ri(1,9),m=ri(1,9)*50;o.push({q:`Write ${km} km ${m} m in metres.`,a:`${km*1000+m} m`});}
+   for(let i=0;i<3;i++){const scale=pick([20,50,100]),cm=ri(2,9)*5/10;o.push({q:`On a map, 1 cm represents ${scale} km. Two towns are ${cm} cm apart. What is the real distance?`,a:`${cm*scale} km`});}
+   for(let i=0;i<3;i++){const speed=ri(4,9)*10,h=ri(2,9)/2;o.push({q:`A car travels ${speed} km in one hour. How far in ${h} hours?`,a:`${speed*h} km`});}
+   return o;},
+ 'area':()=>{const o=[];
+   for(let i=0;i<3;i++){const a=ri(4,12),b=ri(3,9),c=ri(3,8),d=ri(2,6);o.push({q:`An L-shape is made of a ${a}×${b} cm rectangle joined to a ${c}×${d} cm rectangle. What is the total area?`,a:`${a*b+c*d} cm²`});}
+   for(let i=0;i<3;i++){const l=ri(8,16),w=ri(6,12),t=ri(1,3);const outer=(l+2*t)*(w+2*t);o.push({q:`A ${l}×${w} cm garden has a ${t} cm wide path around the outside. What is the area of the path?`,a:`${outer-l*w} cm²`});}
+   for(let i=0;i<3;i++){const b=ri(3,12),h=ri(2,10);const A=b*h/2;o.push({q:`A triangle has an area of ${A} cm² and a base of ${b} cm. Find its height.`,a:`${2*A/b} cm`});}
+   for(let i=0;i<3;i++){const b=ri(4,15),h=ri(3,12);o.push({q:`Find the area of a parallelogram with base ${b} cm and perpendicular height ${h} cm.`,a:`${b*h} cm²`});}
+   return o;},
+ 'volume':()=>{const o=[];
+   for(let i=0;i<3;i++){const l=ri(20,60),w=ri(20,50),h=ri(10,40);const v=l*w*h;o.push({q:`A tank measures ${l}×${w}×${h} cm. How many litres of water does it hold? (1000 cm³ = 1 L)`,a:`${v/1000} L`});}
+   for(let i=0;i<3;i++){const l=ri(2,9),w=ri(2,9),h=ri(2,9),v=l*w*h;o.push({q:`A rectangular prism has a volume of ${v} cm³, a length of ${l} cm and a width of ${w} cm. Find its height.`,a:`${h} cm`});}
+   for(let i=0;i<3;i++){const a=ri(2,6),b=ri(2,6),c=ri(2,6),d=ri(2,6),e=ri(2,6),f=ri(2,6);o.push({q:`A solid is made of two boxes: ${a}×${b}×${c} cm and ${d}×${e}×${f} cm. Total volume?`,a:`${a*b*c+d*e*f} cm³`});}
+   for(let i=0;i<3;i++){const rate=ri(2,6),tank=rate*ri(5,20);o.push({q:`A tap fills ${rate} litres each minute. How long to fill a ${tank} L tank?`,a:`${tank/rate} minutes`});}
+   return o;},
+ 'mass':()=>{const o=[];
+   for(let i=0;i<3;i++){const kg=ri(15,95)/10;o.push({q:`Convert ${kg} kg to grams.`,a:`${kg*1000} g`});}
+   for(let i=0;i<3;i++){const t=ri(2,9);o.push({q:`How many kilograms are in ${t} tonnes? (1 t = 1000 kg)`,a:`${t*1000} kg`});}
+   for(let i=0;i<3;i++){const n=ri(3,8),g=n*ri(40,120),m=ri(2,5)*n;o.push({q:`${n} identical apples weigh ${g} g in total. How much would ${m} apples weigh?`,a:`${g/n*m} g`});}
+   for(let i=0;i<3;i++){const per=ri(150,400),cakes=ri(6,15);o.push({q:`A recipe needs ${per} g of flour per cake. How many kilograms are needed for ${cakes} cakes?`,a:`${per*cakes/1000} kg`});}
+   return o;},
+ 'time':()=>{const o=[];
+   for(let i=0;i<3;i++){const sh=ri(8,18),sm=pick([0,10,15,20,30,45]),dh=ri(1,4),dm=pick([15,20,30,45,50]);let tm=sm+dm,th=sh+dh;if(tm>=60){tm-=60;th++;}th=th%24;o.push({q:`A flight leaves at ${String(sh).padStart(2,'0')}:${String(sm).padStart(2,'0')} and lasts ${dh} h ${dm} min. What is the arrival time (24-hour)?`,a:`${String(th).padStart(2,'0')}:${String(tm).padStart(2,'0')}`});}
+   for(let i=0;i<3;i++){const sh=ri(8,11),sm=pick([0,15,30,45]);const eh=ri(13,16),em=pick([0,15,30,45]);const mins=(eh*60+em)-(sh*60+sm);o.push({q:`How many minutes are there from ${sh}:${String(sm).padStart(2,'0')} am to ${eh-12}:${String(em).padStart(2,'0')} pm?`,a:`${mins} minutes`});}
+   for(let i=0;i<3;i++){const diff=ri(2,3),st=ri(9,20);let pt=(st-diff+24)%24;o.push({q:`Sydney is ${diff} hours ahead of Perth. When it is ${String(st).padStart(2,'0')}:00 in Sydney, what time is it in Perth (24-hour)?`,a:`${String(pt).padStart(2,'0')}:00`});}
+   for(let i=0;i<3;i++){const days=ri(2,5);o.push({q:`How many minutes are there in ${days} days?`,a:`${days*24*60} minutes`});}
+   return o;},
+ 'angles':()=>{const o=[];
+   for(let i=0;i<3;i++){const a=ri(60,120),b=ri(50,110),c=ri(40,100);const fourth=360-a-b-c;if(fourth<40||fourth>170){i--;continue;}o.push({q:`Three angles of a quadrilateral are ${a}°, ${b}° and ${c}°. Find the fourth angle.`,a:`${fourth}°`});}
+   for(let i=0;i<3;i++){const apex=pick([20,30,40,50,70,80,100,120]);o.push({q:`An isosceles triangle has an apex (top) angle of ${apex}°. Find each of the two equal base angles.`,a:`${(180-apex)/2}°`});}
+   for(let i=0;i<3;i++){const pr=pick([[1,2],[1,3],[1,4],[2,3],[1,5],[2,4],[1,1]]);const x=180/(pr[0]+pr[1]);o.push({q:`Two angles on a straight line are in the ratio ${pr[0]}:${pr[1]}. Find the two angles.`,a:`${x*pr[0]}° and ${x*pr[1]}°`});}
+   for(let i=0;i<3;i++){const base=ri(40,75);o.push({q:`An isosceles triangle has two equal base angles of ${base}°. Find the apex angle.`,a:`${180-2*base}°`});}
+   return o;},
+ 'shapes2d':()=>{const o=[];const names={5:'pentagon',6:'hexagon',7:'heptagon',8:'octagon',9:'nonagon',10:'decagon'};
+   for(let i=0;i<3;i++){const n=pick([5,6,7,8,9,10]);o.push({q:`What is the sum of the interior angles of a ${names[n]}? (Use (n−2)×180°.)`,a:`${(n-2)*180}°`});}
+   for(let i=0;i<3;i++){const n=pick([5,6,8,10,12]);o.push({q:`What is the size of each interior angle of a regular ${n}-sided polygon?`,a:`${(n-2)*180/n}°`});}
+   for(let i=0;i<2;i++){const n=pick([5,6,8,9,10]);o.push({q:`How many diagonals does a ${names[n]} have? (Use n(n−3)/2.)`,a:''+(n*(n-3)/2)});}
+   for(let i=0;i<2;i++){const ext=pick([24,30,36,40,45,60,72]);o.push({q:`Each exterior angle of a regular polygon is ${ext}°. How many sides does it have?`,a:''+(360/ext)});}
+   const stat=[{q:'What do the exterior angles of ANY polygon add up to?',a:'360°'},{q:'True or false: the diagonals of a rectangle are equal in length.',a:'True'},{q:'At what angle do the diagonals of a rhombus cross?',a:'90° (they are perpendicular)'}];
+   o.push(...take(stat,2));
+   return o;},
+ 'objects3d':()=>{const o=[];const names={6:'hexagonal',7:'heptagonal',8:'octagonal',10:'decagonal'};
+   for(let i=0;i<3;i++){const n=pick([6,7,8,10]);const which=pick(['faces','edges','vertices']);const val=which==='faces'?n+2:which==='edges'?3*n:2*n;o.push({q:`How many ${which} does a ${names[n]} prism have?`,a:''+val});}
+   for(let i=0;i<3;i++){const n=pick([6,7,8,10]);const which=pick(['faces','edges','vertices']);const val=which==='faces'?n+1:which==='edges'?2*n:n+1;o.push({q:`How many ${which} does a ${names[n]}-based pyramid have?`,a:''+val});}
+   for(let i=0;i<3;i++){const s=ri(2,12);o.push({q:`What is the total surface area of a cube with edge length ${s} cm? (6 × side²)`,a:`${6*s*s} cm²`});}
+   for(let i=0;i<3;i++){const F=ri(5,9),V=ri(5,10);o.push({q:`Using Euler's rule F + V − E = 2: a polyhedron has ${F} faces and ${V} vertices. How many edges?`,a:''+(F+V-2)});}
+   return o;},
+ 'position':()=>{const o=[];
+   for(let i=0;i<3;i++){const x=ri(1,8),y=ri(1,8);o.push({q:`The point (${x}, ${y}) is reflected across the x-axis. What are the new coordinates?`,a:`(${x}, ${-y})`});}
+   for(let i=0;i<3;i++){const x=ri(1,8),y=ri(1,8);o.push({q:`The point (${x}, ${y}) is reflected across the y-axis. What are the new coordinates?`,a:`(${-x}, ${y})`});}
+   for(let i=0;i<3;i++){const x1=ri(0,5)*2,y1=ri(0,5)*2,x2=ri(0,5)*2,y2=ri(0,5)*2;o.push({q:`Find the midpoint of (${x1}, ${y1}) and (${x2}, ${y2}).`,a:`(${(x1+x2)/2}, ${(y1+y2)/2})`});}
+   for(let i=0;i<3;i++){const x=ri(0,6),y=ri(1,6),r=ri(1,6),d=ri(1,y);o.push({q:`Translate the point (${x}, ${y}) by ${r} right and ${d} down. New coordinates?`,a:`(${x+r}, ${y-d})`});}
+   return o;},
+ 'data':()=>{const o=[];
+   for(let i=0;i<3;i++){const n=ri(3,4),mean=ri(6,14);const known=Array.from({length:n},()=>ri(2,mean+5));const missing=mean*(n+1)-known.reduce((a,b)=>a+b,0);if(missing<1){i--;continue;}o.push({q:`${n+1} numbers have a mean of ${mean}. ${n} of them are ${known.join(', ')}. Find the missing number.`,a:''+missing});}
+   for(let i=0;i<3;i++){const cnt=pick([5,7]);const vals=Array.from({length:cnt},()=>ri(2,30)).sort((a,b)=>a-b);o.push({q:`Find the median of: ${shuffle(vals.slice()).join(', ')}`,a:''+vals[(cnt-1)/2]});}
+   for(let i=0;i<3;i++){const k=ri(4,7),m=ri(6,12),extra=ri(2,20);const newMean=(k*m+extra)/(k+1);o.push({q:`The mean of ${k} numbers is ${m}. A new number, ${extra}, is added. What is the new mean? (1 dp)`,a:''+(Math.round(newMean*10)/10)});}
+   for(let i=0;i<3;i++){const vals=Array.from({length:ri(6,8)},()=>ri(5,80));o.push({q:`Find the range of: ${vals.join(', ')}`,a:''+(Math.max(...vals)-Math.min(...vals))});}
+   return o;},
+ 'chance':()=>{const o=[];
+   const two=[{q:'Two fair coins are flipped. What is the probability of getting two heads?',a:'1/4'},{q:'Two fair coins are flipped. What is the probability of getting at least one head?',a:'3/4'},{q:'Two fair coins are flipped. List all the possible outcomes.',a:'HH, HT, TH, TT'}];
+   o.push(...take(two,2));
+   for(let i=0;i<2;i++){const opt=pick([['a prime number','3/6 = 1/2 (primes are 2, 3, 5)'],['a number greater than 4','2/6 = 1/3'],['an even number','3/6 = 1/2'],['a multiple of 3','2/6 = 1/3']]);o.push({q:`A fair six-sided die is rolled. What is the probability of rolling ${opt[0]}?`,a:opt[1]});}
+   for(let i=0;i<2;i++){const sec=pick([8,10,12]);o.push({q:`A spinner is numbered 1 to ${sec} in equal sections. What is the probability of landing on a multiple of 3?`,a:frac(Math.floor(sec/3),sec)});}
+   for(let i=0;i<3;i++){const d=pick([4,5,8,10]),n=ri(1,d-1);o.push({q:`The probability of an event is ${frac(n,d)}. What is the probability it does NOT happen?`,a:frac(d-n,d)});}
+   for(let i=0;i<3;i++){const trials=pick([60,120,180,300]);o.push({q:`If you roll a fair die ${trials} times, about how many times would you expect to roll a 6?`,a:''+(trials/6)});}
+   return o;}
+};
+Object.keys(GEN).forEach(id=>{const base=GEN[id];GEN[id]=()=>{const out=base();out.complex=CGEN[id]?CGEN[id]():[];return out;};});
+
 /* ---------- topic metadata ---------- */
 const TOPICS=[
   {id:'whole-numbers',name:'Whole Numbers & Place Value',strand:'num',intro:'Reading, ordering, rounding and partitioning large numbers, plus factors, multiples and primes.'},
@@ -525,14 +642,16 @@ function setDiff(d,skipGen){
   diff=d;
   document.getElementById('tabSimple').classList.toggle('on',d==='simple');
   document.getElementById('tabHard').classList.toggle('on',d==='hard');
+  document.getElementById('tabComplex').classList.toggle('on',d==='complex');
   if(!skipGen||!data) data=GEN[current.id]();
   renderQuestions();
 }
 function regen(){data=GEN[current.id]();renderQuestions();}
 function renderQuestions(){
-  const list=diff==='simple'?data.simple:data.hard;
+  const list=data[diff];
+  const pillClass=diff==='simple'?'green':diff==='hard'?'coral':'maroon';
   const wt=document.getElementById('wsTitle');
-  wt.innerHTML=`${current.name} — Worksheet <span class="pill ${diff==='simple'?'green':'coral'}">${diff} · ${list.length} questions</span>`;
+  wt.innerHTML=`${current.name} — Worksheet <span class="pill ${pillClass}">${diff} · ${list.length} questions</span>`;
   const ol=document.getElementById('qList');
   ol.innerHTML=list.map((item,i)=>`<li>
       <div class="qtext">${item.q}</div>

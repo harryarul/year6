@@ -22,7 +22,7 @@ const SUBJECTS = [
     desc:'Number, measurement, space, statistics — with practice worksheets.',
     accent:'var(--teal)',   dk:'var(--teal-dk)',   icon:'maths' },
 
-  { name:'Science & Technology', short:'Science',   file:'science.html',   ready:false,
+  { name:'Science & Technology', short:'Science',   file:'science.html',   ready:true,
     desc:'Living things, materials, forces, and the digital world.',
     accent:'var(--green)',  dk:'var(--green-dk)',  icon:'flask' },
 
