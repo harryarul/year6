@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 Health &amp; PE — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="subjects.css">
+<link rel="stylesheet" href="pdhpe.css">
+</head>
+<body>
+<script>
+window.SUBJECT={
+  title:'Health & PE', kicker:'NSW Stage 3 · PDHPE', heroWord:'Health & PE',
+  sub:'Build a healthy body and mind, sharpen your soccer and basketball skills, and outthink rivals at chess.',
+  GROUP:{health:'Healthy & Happy', active:'Active & Games'},
+  TOPICS:[
+    {id:'bodies',name:'Healthy Bodies',group:'health',accent:'var(--green)',icon:'🥗',
+     intro:'Food for energy, exercise, sleep and the habits that keep an athlete at their best.',
+     pics:[['🥗','Food'],['💧','Water'],['😴','Sleep'],['🏃','Exercise']]},
+    {id:'wellbeing',name:'Wellbeing',group:'health',accent:'var(--ocean)',icon:'🧠',
+     intro:'Handling emotions, bouncing back, good friendships and staying calm under pressure.',
+     pics:[['🧠','Mind'],['😊','Emotions'],['🤝','Friends'],['🧘','Calm']]},
+    {id:'skills',name:'Sport Skills',group:'active',accent:'var(--coral)',icon:'⚽',
+     intro:'Soccer and basketball fundamentals — dribbling, passing, shooting, footwork and reflexes.',
+     pics:[['⚽','Soccer'],['🏀','Basketball'],['👟','Footwork'],['⏱️','Reflexes']]},
+    {id:'games',name:'Games & Strategy',group:'active',accent:'var(--amber)',icon:'♟️',
+     intro:'Think ahead like a chess champion, play fair, and use smart tactics and teamwork.',
+     pics:[['♟️','Chess'],['🧩','Tactics'],['🤝','Teamwork'],['🏆','Fair play']]}
+  ],
+  VIDEOS:{
+    bodies:[
+      {title:'Healthy eating for kids — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=healthy+eating+for+kids+food+groups'}
+    ],
+    wellbeing:[
+      {title:'Mindfulness & breathing for kids — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=mindfulness+breathing+for+kids'}
+    ],
+    skills:[
+      {title:'Basketball for Beginners: Dribbling, Shooting & Layups',by:'Basketball tutorial',id:'Z-XLUvA6HGI'},
+      {title:'Soccer skills for beginners — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=soccer+skills+for+beginners+kids'}
+    ],
+    games:[
+      {title:'Chess for beginners: how the pieces move — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=chess+for+beginners+how+pieces+move'},
+      {title:'Learn & play chess (ChessKid)',by:'ChessKid',url:'https://www.chesskid.com'}
+    ]
+  },
+  EXPLORE:{
+    bodies:{kind:'sort',title:'Sorting game: Everyday food or Sometimes food?',hint:'Tap whether each food is an “everyday” food or a “sometimes” food.',
+      cats:['Everyday','Sometimes'],
+      items:[['Apple','Everyday'],['Lollies','Sometimes'],['Carrots','Everyday'],['Soft drink','Sometimes'],['Wholegrain bread','Everyday'],['Hot chips','Sometimes'],['Water','Everyday'],['Cake','Sometimes'],['Yoghurt','Everyday'],['Chocolate bar','Sometimes'],['Banana','Everyday'],['Fried takeaway','Sometimes']],
+      links:[['🥗 Healthy eating (BBC Bitesize)','https://www.bbc.co.uk/bitesize']]},
+    wellbeing:{kind:'breathe',title:'Calm-down: box breathing',hint:'Press Start and follow the circle: breathe in, hold, breathe out, hold. Great before a big game or test.',
+      links:[['🧘 Mindfulness for kids — search','https://www.youtube.com/results?search_query=mindfulness+for+kids']]},
+    skills:{kind:'reaction',title:'Reflex test: react like a goalkeeper',hint:'Tap to start, then tap the instant the box turns green. Top keepers and point guards have lightning reflexes!',
+      links:[['🏀 Basketball drills — search','https://www.youtube.com/results?search_query=basketball+drills+for+beginners+kids'],['⚽ Soccer skills — search','https://www.youtube.com/results?search_query=soccer+skills+for+beginners']]},
+    games:{kind:'sort',title:'Chess: how does this piece move?',hint:'Read the move and tap the chess piece it describes.',
+      cats:['Knight','Bishop','Rook','Queen'],
+      items:[['Moves in an L-shape, and can jump over pieces','Knight'],['Moves diagonally any distance','Bishop'],['Moves in straight lines: up, down or across','Rook'],['Moves any direction, any number of squares','Queen'],['The L-shaped jumper','Knight'],['Slides only along diagonals','Bishop'],['Slides only in straight lines','Rook'],['The most powerful piece on the board','Queen']],
+      links:[['♟️ Play & learn chess (ChessKid)','https://www.chesskid.com'],['🧩 Chess basics — search','https://www.youtube.com/results?search_query=chess+for+beginners+how+pieces+move']]}
+  },
+  Q:{
+    bodies:{simple:[
+      {q:'Name a food group you should eat lots of.',a:'vegetables and fruit'},
+      {q:'Why is water important for your body?',a:'it keeps you hydrated and helps your body work'},
+      {q:'About how many hours of sleep do kids your age need?',a:'9 to 11 hours'},
+      {q:'Why is exercise good for you?',a:'it keeps your heart, muscles and mind healthy'},
+      {q:'Name a “sometimes” food.',a:'e.g. lollies, chips, cake or soft drink'},
+      {q:'What should you do before and after eating, for hygiene?',a:'wash your hands'},
+      {q:'Name a way to keep your teeth healthy.',a:'brush twice a day and limit sugary food'},
+      {q:'What does a “balanced diet” mean?',a:'eating a variety of foods in the right amounts'},
+      {q:'Why do we warm up before sport?',a:'to prepare muscles and prevent injury'},
+      {q:'Name a type of exercise.',a:'e.g. running, swimming, soccer or basketball'},
+      {q:'Roughly how many minutes of activity should kids get each day?',a:'at least 60 minutes'}],
+    hard:[
+      {q:'Name three of the five food groups.',a:'e.g. vegetables, fruit and grains (also dairy and lean proteins)'},
+      {q:'Why are carbohydrates useful?',a:'they give the body energy'},
+      {q:'What do proteins help your body do?',a:'build and repair muscles and tissue'},
+      {q:'Why is too much sugar unhealthy?',a:'it can cause tooth decay and other health problems'},
+      {q:'What does aerobic exercise (like running) do?',a:'it raises your heart rate and improves fitness'},
+      {q:'How does sleep help athletes?',a:'muscles recover and the body and brain refresh'},
+      {q:'Why drink more water during sport?',a:'you lose water through sweat and need to replace it'},
+      {q:'What is your “heart rate”?',a:'how many times your heart beats per minute'},
+      {q:'Why is breakfast important?',a:'it gives energy and focus to start the day'},
+      {q:'Name a benefit of exercise besides fitness.',a:'better mood, sleep, focus or confidence'},
+      {q:'What does “hydrated” mean?',a:'having enough water in your body'}]},
+    wellbeing:{simple:[
+      {q:'Name a feeling or emotion.',a:'e.g. happy, sad, angry, excited or nervous'},
+      {q:'What can you do when you feel worried?',a:'talk to someone you trust and breathe slowly'},
+      {q:'Name a trusted adult you could talk to.',a:'a parent, teacher or carer'},
+      {q:'Why are friends important?',a:'they support us and help us feel we belong'},
+      {q:'What is “kindness”?',a:'being caring and helpful to others'},
+      {q:'Name a way to calm down.',a:'deep breathing, a walk, or listening to music'},
+      {q:'Why is it okay to make mistakes?',a:'mistakes help us learn and improve'},
+      {q:'What is good sportsmanship?',a:'playing fairly and respecting others, win or lose'},
+      {q:'What helps your mood?',a:'exercise, sleep, friends and doing things you enjoy'},
+      {q:'What does “resilience” mean?',a:'bouncing back when things are hard'},
+      {q:'Why is it good to talk about feelings?',a:'it helps you understand and manage them'}],
+    hard:[
+      {q:'What is “mindfulness”?',a:'paying attention to the present moment, calmly'},
+      {q:'Describe “box breathing”.',a:'breathe in for 4, hold 4, out 4, hold 4'},
+      {q:'What is “empathy”?',a:'understanding and sharing how someone else feels'},
+      {q:'What is a healthy way to handle anger?',a:'pause, breathe, talk it out, or walk away to cool down'},
+      {q:'Why is asking for help a strength, not a weakness?',a:'everyone needs support sometimes; it helps you cope'},
+      {q:'What is positive self-talk?',a:'encouraging yourself, which builds confidence'},
+      {q:'What is “peer pressure” and what can you do?',a:'when friends push you to do something — you can say no'},
+      {q:'How can you support a friend who is sad?',a:'listen, be kind, and tell a trusted adult if needed'},
+      {q:'What is a “growth mindset”?',a:'believing you can improve with effort and practice'},
+      {q:'Why is balance (sleep, study, play) important?',a:'it keeps your body and mind healthy'},
+      {q:'How can deep breathing help before a big game?',a:'it calms nerves and helps you focus'}]},
+    skills:{simple:[
+      {q:'In soccer, which body part can outfield players NOT use on the ball?',a:'the hands/arms'},
+      {q:'In basketball, what is bouncing the ball while moving called?',a:'dribbling'},
+      {q:'In soccer, what is it called when you score?',a:'a goal'},
+      {q:'How many points is a normal basketball field goal (inside the arc)?',a:'two points'},
+      {q:'Why keep your eyes up while dribbling?',a:'to see teammates, the goal/hoop and defenders'},
+      {q:'What is “passing”?',a:'sending the ball to a teammate'},
+      {q:'What does a goalkeeper do?',a:'stops the ball going into the goal'},
+      {q:'What is a “layup” in basketball?',a:'a close-range shot near the hoop'},
+      {q:'What is “teamwork”?',a:'working together to reach a goal'},
+      {q:'Why warm up before a game?',a:'to loosen muscles and avoid injury'},
+      {q:'Name a skill you can practise alone.',a:'dribbling, shooting or ball control'}],
+    hard:[
+      {q:'How many points is a basketball shot from behind the three-point line?',a:'three points'},
+      {q:'What is a “crossover” in basketball?',a:'quickly switching the ball between hands to beat a defender'},
+      {q:'In soccer, what is an “assist”?',a:'the pass that sets up a goal'},
+      {q:'What does “marking” an opponent mean?',a:'staying close to stop them getting the ball'},
+      {q:'Why is footwork important in sport?',a:'for balance, speed and quick changes of direction'},
+      {q:'What is “spatial awareness” in a game?',a:'knowing where players and space are around you'},
+      {q:'What is the simple idea of “offside” in soccer?',a:'being past the last defender when the ball is played to you'},
+      {q:'What makes a good free-throw routine?',a:'doing the same steps every time: set feet, breathe, focus, shoot'},
+      {q:'Why practise with both feet or both hands?',a:'it makes you harder to defend and more skilful'},
+      {q:'What is “agility”?',a:'the ability to move and change direction quickly'},
+      {q:'How does fitness help late in a match?',a:'you stay fast and focused when others tire'}]},
+    games:{simple:[
+      {q:'How many squares are on a chessboard?',a:'64'},
+      {q:'Which chess piece moves in an L-shape?',a:'the knight'},
+      {q:'What is the aim of chess?',a:'to checkmate the opponent’s king'},
+      {q:'Which chess piece is the most powerful?',a:'the queen'},
+      {q:'What does “check” mean?',a:'the king is under attack'},
+      {q:'How does a bishop move?',a:'diagonally'},
+      {q:'How does a rook move?',a:'in straight lines (up, down or across)'},
+      {q:'What is “fair play”?',a:'following the rules and respecting others'},
+      {q:'Why is it good to think before you move?',a:'to avoid mistakes and plan ahead'},
+      {q:'What happens at “checkmate”?',a:'the king is trapped and the game is over'},
+      {q:'How does a pawn usually move?',a:'forward one square (two on its first move)'}],
+    hard:[
+      {q:'What is “castling” in chess?',a:'a special move using the king and a rook for safety'},
+      {q:'What does it mean to “control the centre”?',a:'using the middle squares to give your pieces more power'},
+      {q:'What is a “fork” in chess?',a:'one piece attacking two enemy pieces at once'},
+      {q:'Why develop your pieces early?',a:'to make them active and protect your king quickly'},
+      {q:'What is the difference between strategy and tactics?',a:'strategy is the long-term plan; tactics are short, sharp moves'},
+      {q:'How does the queen move?',a:'any direction, any number of squares'},
+      {q:'What is a “stalemate”?',a:'no legal move and the king is not in check — it’s a draw'},
+      {q:'How is team sport like chess?',a:'you plan moves ahead and use players together'},
+      {q:'What is a “gambit”?',a:'sacrificing a piece early to gain an advantage'},
+      {q:'Why does thinking ahead help in games?',a:'you can predict the opponent and make better choices'},
+      {q:'Name a value good games teach.',a:'patience, respect, focus or resilience'}]}
+  }
+};
+</script>
+<script src="subjects.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>

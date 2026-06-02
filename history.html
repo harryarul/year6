@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 History — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="subjects.css">
+<link rel="stylesheet" href="history.css">
+</head>
+<body>
+<script>
+window.SUBJECT={
+  title:'History', kicker:'NSW Stage 3 · History (HSIE)', heroWord:'History',
+  sub:'Discover how Australia became a nation, how our democracy works, and the people of the past.',
+  GROUP:{nation:'Australia as a Nation', gov:'Democracy & Government', past:'People of the Past'},
+  TOPICS:[
+    {id:'nation',name:'Australia as a Nation',group:'nation',accent:'var(--amber)',icon:'🇦🇺',
+     intro:'How six colonies joined together in 1901 to form one nation under a Constitution.',
+     pics:[['🇦🇺','Flag'],['🏛️','Parliament'],['📜','Constitution'],['🗺️','States']]},
+    {id:'gov',name:'Democracy & Government',group:'gov',accent:'var(--ocean)',icon:'🗳️',
+     intro:'The three levels of government, voting, and how citizens have their say.',
+     pics:[['🗳️','Voting'],['🏛️','Parliament'],['⚖️','Laws'],['🙋','Citizens']]},
+    {id:'past',name:'People of the Past',group:'past',accent:'var(--coral)',icon:'⛏️',
+     intro:'Australia’s First Peoples, colonial life, the gold rush and people who migrated here.',
+     pics:[['🪃','First Peoples'],['⛏️','Gold rush'],['🚢','Migration'],['🕰️','Long ago']]}
+  ],
+  VIDEOS:{
+    nation:[
+      {title:'Australia’s Federation',by:'Parliamentary Education Office',id:'BBn-q_f8FpA'},
+      {title:'Defining Moments: Australian Federation',by:'National Museum of Australia',id:'ZBPB883LE4Y'}
+    ],
+    gov:[
+      {title:'Three Levels of Government (video + game)',by:'Parliamentary Education Office',url:'https://peo.gov.au/understand-our-parliament/how-parliament-works/three-levels-of-government'},
+      {title:'How government works — search results',by:'YouTube',url:'https://www.youtube.com/results?search_query=three+levels+of+government+australia+for+students'}
+    ],
+    past:[
+      {title:'Australia’s First Peoples & the Gold Rush — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=australian+gold+rush+for+kids'},
+      {title:'Defining Moments in Australian history',by:'National Museum of Australia',url:'https://www.nma.gov.au/defining-moments'}
+    ]
+  },
+  EXPLORE:{
+    nation:{kind:'sort',title:'Sorting game: State or Territory?',hint:'Tap whether each one is a state or a territory of Australia.',
+      cats:['State','Territory'],
+      items:[['New South Wales','State'],['Victoria','State'],['Queensland','State'],['South Australia','State'],['Western Australia','State'],['Tasmania','State'],['Northern Territory','Territory'],['Australian Capital Territory','Territory']],
+      links:[['🏛️ Parliamentary Education Office','https://peo.gov.au'],['🏺 National Museum of Australia','https://www.nma.gov.au/learn']]},
+    gov:{kind:'sort',title:'Sorting game: Which level of government?',hint:'Tap the level of government responsible for each job.',
+      cats:['Local','State','Federal'],
+      items:[['Collecting your household rubbish','Local'],['Local parks and libraries','Local'],['Local roads and footpaths','Local'],['Public schools','State'],['Hospitals','State'],['Police','State'],['Trains and public transport','State'],['Defence (the army)','Federal'],['Immigration','Federal'],['Australian money (currency)','Federal']],
+      links:[['🦸 Federal, state & local game (PEO)','https://peo.gov.au/understand-our-parliament/how-parliament-works/three-levels-of-government/federal-state-and-local']]},
+    past:{kind:'sort',title:'Sorting game: Long ago or today?',hint:'Tap whether each part of daily life was “long ago” or “today”.',
+      cats:['Long ago','Today'],
+      items:[['Wrote on a slate with chalk','Long ago'],['Used a tablet or laptop','Today'],['Travelled by horse and cart','Long ago'],['Lit homes with candles and lamps','Long ago'],['Streamed shows online','Today'],['Sent letters by ship for months','Long ago'],['Played video games','Today'],['Washed clothes by hand','Long ago'],['Used electric lights','Today'],['Panned for gold by a creek','Long ago']],
+      links:[['🏺 National Museum of Australia','https://www.nma.gov.au/learn'],['📚 BBC Bitesize','https://www.bbc.co.uk/bitesize']]}
+  },
+  Q:{
+    nation:{simple:[
+      {q:'When did Australia become a nation (Federation)?',a:'1 January 1901'},
+      {q:'How many colonies joined together to form Australia?',a:'six'},
+      {q:'What document sets the rules for Australia’s government?',a:'the Constitution'},
+      {q:'What is Australia’s capital city?',a:'Canberra'},
+      {q:'How many states does Australia have?',a:'six'},
+      {q:'How many main mainland territories are there?',a:'two (the ACT and the Northern Territory)'},
+      {q:'What do we call the joining of the colonies into one nation?',a:'Federation'},
+      {q:'What is the title of Australia’s leader of the federal government?',a:'the Prime Minister'},
+      {q:'Name one Australian state.',a:'e.g. New South Wales, Victoria or Queensland'},
+      {q:'Before Federation, what were the six areas called?',a:'colonies'},
+      {q:'In which city does the federal Parliament meet?',a:'Canberra'}],
+    hard:[
+      {q:'Name all six Australian states.',a:'NSW, Victoria, Queensland, South Australia, Western Australia and Tasmania'},
+      {q:'Name Australia’s two main territories.',a:'the Australian Capital Territory and the Northern Territory'},
+      {q:'Give one reason the colonies decided to federate.',a:'shared defence, easier trade, or a growing sense of national identity'},
+      {q:'Who was Australia’s first Prime Minister?',a:'Edmund Barton'},
+      {q:'Who is often called the “Father of Federation”?',a:'Sir Henry Parkes'},
+      {q:'What does the Constitution divide between the states and the federal Parliament?',a:'law-making powers'},
+      {q:'Why was Canberra chosen as the capital?',a:'as a compromise between rival cities Sydney and Melbourne'},
+      {q:'About how long have Aboriginal and Torres Strait Islander peoples lived here?',a:'at least 60,000 years'},
+      {q:'What is a referendum?',a:'a national vote where citizens decide a question (used to change the Constitution)'},
+      {q:'What is the role of the Governor-General?',a:'to represent the Crown (the King) in Australia'},
+      {q:'What was the Commonwealth of Australia created from?',a:'the six former British colonies'}]},
+    gov:{simple:[
+      {q:'How many levels of government does Australia have?',a:'three'},
+      {q:'Name the three levels of government.',a:'local, state/territory and federal'},
+      {q:'What do we call choosing leaders by voting?',a:'an election'},
+      {q:'At what age can Australians vote?',a:'18'},
+      {q:'Is voting compulsory for Australian citizens aged 18 and over?',a:'yes'},
+      {q:'Which level of government collects household rubbish?',a:'local council'},
+      {q:'Which level of government runs public schools and hospitals?',a:'state (and territory) government'},
+      {q:'Which level of government looks after defence (the army)?',a:'federal government'},
+      {q:'What is the leader of the federal government called?',a:'the Prime Minister'},
+      {q:'Who do citizens elect to speak for them?',a:'members of parliament (representatives)'},
+      {q:'What do we call a law made by parliament?',a:'an Act (a law)'}],
+    hard:[
+      {q:'What are the two houses of the federal Parliament?',a:'the House of Representatives and the Senate'},
+      {q:'What does “democracy” mean?',a:'government by the people, who elect their representatives'},
+      {q:'Give one responsibility of local councils.',a:'local roads, rubbish, parks or libraries'},
+      {q:'Give one responsibility of the federal government.',a:'defence, immigration or currency'},
+      {q:'What is a “secret ballot”?',a:'voting privately so no one knows how you voted'},
+      {q:'Why is it important that everyone can vote?',a:'so the government fairly represents all the people'},
+      {q:'What is the role of the Opposition?',a:'to question and check the government'},
+      {q:'What is a local law made by a council called?',a:'a by-law'},
+      {q:'About how often is a federal election held?',a:'about every three years'},
+      {q:'Which level of government usually manages major roads and public transport?',a:'state/territory government'},
+      {q:'What do we call it when the government must answer for its actions?',a:'accountability'}]},
+    past:{simple:[
+      {q:'Who are the First Peoples of Australia?',a:'Aboriginal and Torres Strait Islander peoples'},
+      {q:'Aboriginal cultures are among the world’s…?',a:'oldest continuous living cultures'},
+      {q:'What was the gold rush?',a:'a time in the 1850s when many people came to dig for gold'},
+      {q:'In which decade did the Australian gold rushes begin?',a:'the 1850s'},
+      {q:'What does “immigration” mean?',a:'people moving to live in a new country'},
+      {q:'How did most people travel to Australia in the 1800s?',a:'by ship'},
+      {q:'What is the special connection Aboriginal peoples have to the land called?',a:'connection to Country'},
+      {q:'What is NAIDOC Week?',a:'a week celebrating Aboriginal and Torres Strait Islander histories and cultures'},
+      {q:'Name a tool used to find gold.',a:'a pan, pick or cradle (panning for gold)'},
+      {q:'Did people live in Australia before 1788?',a:'yes — Aboriginal peoples for tens of thousands of years'},
+      {q:'What is a “boomerang”?',a:'a curved wooden tool used by Aboriginal peoples'}],
+    hard:[
+      {q:'About how long have Aboriginal peoples lived in Australia?',a:'at least 60,000 years'},
+      {q:'What does “the Dreaming” refer to?',a:'Aboriginal beliefs and stories about creation, law and Country'},
+      {q:'Which 1854 gold-rush event saw miners stand up for their rights?',a:'the Eureka Stockade'},
+      {q:'Why did the gold rush change Australia’s population?',a:'many immigrants arrived from around the world, growing the population'},
+      {q:'Name a group who migrated to Australia during the gold rush.',a:'Chinese miners (among many others)'},
+      {q:'What is “Native Title”?',a:'legal recognition of First Nations peoples’ traditional rights to land'},
+      {q:'Who was Eddie Mabo?',a:'a Torres Strait Islander man whose 1992 case led to recognition of Native Title'},
+      {q:'What happened to many First Nations peoples after colonisation began in 1788?',a:'they lost land, and many died from disease and conflict; cultures were disrupted'},
+      {q:'What is an “artefact”?',a:'an object made or used by people in the past'},
+      {q:'Why do historians study sources from the past?',a:'to find evidence about how people lived and how things changed'},
+      {q:'What were living conditions like for most gold miners?',a:'hard — tents, mud and heavy work, with little gold for most'}]}
+  }
+};
+</script>
+<script src="subjects.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>

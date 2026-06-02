@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 Geography — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="subjects.css">
+<link rel="stylesheet" href="geography.css">
+</head>
+<body>
+<script>
+window.SUBJECT={
+  title:'Geography', kicker:'NSW Stage 3 · Geography (HSIE)', heroWord:'Geography',
+  sub:'Explore maps and globes, Australia’s places and environments, and the wider world.',
+  GROUP:{tools:'Maps & the World', places:'Places & Environments'},
+  TOPICS:[
+    {id:'maps',name:'Maps & Globes',group:'tools',accent:'var(--ocean)',icon:'🧭',
+     intro:'Compass directions, scale, grid references, hemispheres and reading maps and globes.',
+     pics:[['🧭','Compass'],['🗺️','Maps'],['🌐','Globe'],['📍','Location']]},
+    {id:'world',name:'The Wider World',group:'tools',accent:'var(--berry)',icon:'🌍',
+     intro:'The seven continents, five oceans, countries, cultures and how the world connects.',
+     pics:[['🌍','Earth'],['🗽','Countries'],['🏯','Cultures'],['✈️','Connections']]},
+    {id:'australia',name:'Australia’s Places',group:'places',accent:'var(--amber)',icon:'🦘',
+     intro:'Australian states, landmarks, landforms, climate and why people live where they do.',
+     pics:[['🦘','Wildlife'],['🏜️','Outback'],['🏖️','Coast'],['🏙️','Cities']]},
+    {id:'environment',name:'Caring for our Planet',group:'places',accent:'var(--green)',icon:'🌱',
+     intro:'Environments, sustainability, looking after nature and staying safe from hazards.',
+     pics:[['🌱','Nature'],['♻️','Recycle'],['🌳','Forests'],['💧','Water']]}
+  ],
+  VIDEOS:{
+    maps:[
+      {title:'How to read a map — search results',by:'YouTube',url:'https://www.youtube.com/results?search_query=how+to+read+a+map+for+kids+compass+grid'},
+      {title:'Maps & Geography skills',by:'BBC Bitesize',url:'https://www.bbc.co.uk/bitesize'}
+    ],
+    world:[
+      {title:'7 Continents and 5 Oceans of the World',by:'Geography for Kids',id:'JsCO2AWymeU'}
+    ],
+    australia:[
+      {title:'Australia geography for kids — search results',by:'YouTube',url:'https://www.youtube.com/results?search_query=australia+geography+for+kids+states'},
+      {title:'Explore Australia’s places',by:'National Geographic Kids',url:'https://kids.nationalgeographic.com'}
+    ],
+    environment:[
+      {title:'Looking after the environment — search results',by:'YouTube',url:'https://www.youtube.com/results?search_query=caring+for+the+environment+for+kids'}
+    ]
+  },
+  EXPLORE:{
+    maps:{kind:'sort',title:'Sorting game: Northern or Southern Hemisphere?',hint:'Tap the hemisphere each place is mostly in (the equator splits them).',
+      cats:['Northern','Southern'],
+      items:[['Australia','Southern'],['Canada','Northern'],['Egypt','Northern'],['Antarctica','Southern'],['Japan','Northern'],['South Africa','Southern'],['United Kingdom','Northern'],['New Zealand','Southern'],['Brazil (mostly)','Southern'],['Russia','Northern']],
+      links:[['🗺️ BBC Bitesize geography','https://www.bbc.co.uk/bitesize'],['🌐 National Geographic Kids','https://kids.nationalgeographic.com']]},
+    world:{kind:'sort',title:'Sorting game: Continent or Ocean?',hint:'Tap whether each name is a continent or an ocean.',
+      cats:['Continent','Ocean'],
+      items:[['Africa','Continent'],['Asia','Continent'],['Europe','Continent'],['Antarctica','Continent'],['North America','Continent'],['South America','Continent'],['Pacific','Ocean'],['Atlantic','Ocean'],['Indian','Ocean'],['Arctic','Ocean'],['Southern','Ocean']],
+      links:[['🌐 National Geographic Kids','https://kids.nationalgeographic.com'],['🗺️ BBC Bitesize','https://www.bbc.co.uk/bitesize']]},
+    australia:{kind:'sort',title:'Sorting game: Natural or Built?',hint:'Tap whether each Australian feature is natural or built by people.',
+      cats:['Natural','Built'],
+      items:[['Uluru','Natural'],['Great Barrier Reef','Natural'],['Sydney Opera House','Built'],['Sydney Harbour Bridge','Built'],['Blue Mountains','Natural'],['The Outback','Natural'],['The Twelve Apostles','Natural'],['Parliament House, Canberra','Built'],['Bondi Beach','Natural'],['The MCG stadium','Built']],
+      links:[['🦘 National Geographic Kids','https://kids.nationalgeographic.com'],['🗺️ BBC Bitesize','https://www.bbc.co.uk/bitesize']]},
+    environment:{kind:'sort',title:'Sorting game: Recycle, Compost or Rubbish?',hint:'Tap where each item should usually go.',
+      cats:['Recycle','Compost','Rubbish'],
+      items:[['Glass bottle','Recycle'],['Banana peel','Compost'],['Plastic bottle','Recycle'],['Apple core','Compost'],['Chip packet','Rubbish'],['Newspaper','Recycle'],['Vegetable scraps','Compost'],['Broken toy','Rubbish'],['Aluminium can','Recycle'],['Used tissue','Rubbish']],
+      links:[['♻️ Caring for the planet (BBC Bitesize)','https://www.bbc.co.uk/bitesize'],['🌳 National Geographic Kids','https://kids.nationalgeographic.com']]}
+  },
+  Q:{
+    maps:{simple:[
+      {q:'What does a compass help you find?',a:'direction (north, south, east, west)'},
+      {q:'Name the four main compass directions.',a:'north, south, east and west'},
+      {q:'What is a map?',a:'a drawing of an area seen from above'},
+      {q:'What is a globe?',a:'a round model of the Earth'},
+      {q:'What does a map’s key (legend) show?',a:'what the symbols on the map mean'},
+      {q:'What is the imaginary line around the middle of the Earth called?',a:'the equator'},
+      {q:'What does the colour blue usually show on a map?',a:'water (rivers, lakes, seas)'},
+      {q:'Which direction does a compass needle point?',a:'north'},
+      {q:'What is map “scale” used for?',a:'to relate distances on the map to real distances'},
+      {q:'What are grid references used for?',a:'to find an exact location on a map'},
+      {q:'What lines run east–west and measure how far north or south you are?',a:'lines of latitude'}],
+    hard:[
+      {q:'What is the difference between latitude and longitude?',a:'latitude lines run east–west; longitude lines run north–south'},
+      {q:'What are the two halves of Earth split by the equator called?',a:'the Northern and Southern Hemispheres'},
+      {q:'What is the Prime Meridian?',a:'the line of 0° longitude (through Greenwich)'},
+      {q:'If a map scale is 1 cm to 10 km, how far is 4 cm?',a:'40 km'},
+      {q:'What is a contour line on a map?',a:'a line joining points of equal height (it shows hills)'},
+      {q:'What is the difference between a political and a physical map?',a:'political shows borders/countries; physical shows landforms'},
+      {q:'Which hemisphere is Australia in?',a:'the Southern Hemisphere'},
+      {q:'Name two intercardinal directions.',a:'e.g. north-east and south-west'},
+      {q:'What does “bird’s-eye view” mean?',a:'looking straight down from above, like a map'},
+      {q:'What does latitude 0° mark?',a:'the equator'},
+      {q:'Why are symbols used on maps?',a:'to show features simply, without lots of words'}]},
+    world:{simple:[
+      {q:'How many continents are there?',a:'seven'},
+      {q:'How many oceans are there?',a:'five'},
+      {q:'Name the largest ocean.',a:'the Pacific Ocean'},
+      {q:'Name the largest continent.',a:'Asia'},
+      {q:'Which continent is mostly ice at the bottom of the Earth?',a:'Antarctica'},
+      {q:'Which continent has Egypt, Kenya and Nigeria?',a:'Africa'},
+      {q:'What is the smallest continent?',a:'Australia (Oceania)'},
+      {q:'Name a country in Asia.',a:'e.g. Japan, China or India'},
+      {q:'What do we call a group’s customs, food and traditions?',a:'their culture'},
+      {q:'Which continent is France in?',a:'Europe'},
+      {q:'Which continent is Brazil in?',a:'South America'}],
+    hard:[
+      {q:'Name all seven continents.',a:'Asia, Africa, North America, South America, Antarctica, Europe and Australia (Oceania)'},
+      {q:'Name the five oceans.',a:'Pacific, Atlantic, Indian, Southern and Arctic'},
+      {q:'Which is the smallest ocean?',a:'the Arctic Ocean'},
+      {q:'Which country has the largest land area?',a:'Russia'},
+      {q:'Which continent has no permanent human residents?',a:'Antarctica'},
+      {q:'What is the equator?',a:'the imaginary line around the Earth’s middle'},
+      {q:'Name a near neighbour of Australia.',a:'Indonesia, Papua New Guinea or New Zealand'},
+      {q:'Why do countries have different time zones?',a:'the Earth rotates, so the Sun is over different places at different times'},
+      {q:'Name a way distant countries are connected today.',a:'trade, travel, the internet or sport'},
+      {q:'Which country recently became the most populous?',a:'India'},
+      {q:'What separates continents from each other?',a:'oceans (and seas)'}]},
+    australia:{simple:[
+      {q:'What is the capital city of Australia?',a:'Canberra'},
+      {q:'What famous large rock is in central Australia?',a:'Uluru (Ayers Rock)'},
+      {q:'What is the Great Barrier Reef?',a:'the world’s largest coral reef, off Queensland'},
+      {q:'Name Australia’s vast, dry inland area.',a:'the Outback'},
+      {q:'Which ocean is on Australia’s east coast?',a:'the Pacific Ocean'},
+      {q:'Name an animal found naturally only in Australia.',a:'kangaroo, koala or platypus'},
+      {q:'What is the capital of New South Wales?',a:'Sydney'},
+      {q:'Is Australia a continent, a country, or both?',a:'both'},
+      {q:'What is the climate like in central Australia?',a:'hot and dry (desert)'},
+      {q:'Name a famous Australian beach.',a:'e.g. Bondi Beach'},
+      {q:'Which is the largest Australian state by area?',a:'Western Australia'}],
+    hard:[
+      {q:'Name two states and their capital cities.',a:'e.g. NSW–Sydney and Victoria–Melbourne'},
+      {q:'Which ocean is to the west of Australia?',a:'the Indian Ocean'},
+      {q:'What is Australia’s longest river system?',a:'the Murray–Darling'},
+      {q:'Name a major Australian mountain range.',a:'the Great Dividing Range'},
+      {q:'Why do most Australians live near the coast?',a:'the inland is very dry; the coast has better water and climate'},
+      {q:'What is Australia’s highest mountain?',a:'Mount Kosciuszko'},
+      {q:'Name Australia’s two territories.',a:'the Australian Capital Territory and the Northern Territory'},
+      {q:'Why are Australia’s seasons opposite to Europe’s?',a:'it is in the Southern Hemisphere'},
+      {q:'Name a natural hazard common in Australia.',a:'bushfires, droughts, floods or cyclones'},
+      {q:'What is the capital of Western Australia?',a:'Perth'},
+      {q:'Is Australia the driest inhabited continent?',a:'yes'}]},
+    environment:{simple:[
+      {q:'What does “recycle” mean?',a:'turning used materials into new things'},
+      {q:'Name one thing you can recycle.',a:'paper, glass, plastic bottles or cans'},
+      {q:'What do the three R’s (reduce, reuse, recycle) help do?',a:'cut down waste and protect the environment'},
+      {q:'Why are trees important?',a:'they make oxygen, give shade and provide homes for animals'},
+      {q:'What is pollution?',a:'harmful things that damage the environment'},
+      {q:'Name a renewable energy source.',a:'solar, wind or water (hydro)'},
+      {q:'What is a habitat?',a:'the natural home of a plant or animal'},
+      {q:'Why should we save water?',a:'it is a limited and precious resource'},
+      {q:'What is composting?',a:'letting food and garden scraps rot down into soil'},
+      {q:'What can litter near the sea do?',a:'harm sea animals and pollute the water'},
+      {q:'What gas do trees take in that helps the planet?',a:'carbon dioxide'}],
+    hard:[
+      {q:'What is “sustainability”?',a:'using resources carefully so they last for the future'},
+      {q:'What is climate change?',a:'long-term changes in Earth’s weather patterns, largely from human activity'},
+      {q:'Why is biodiversity important?',a:'many living things keep ecosystems healthy and balanced'},
+      {q:'What is deforestation and why is it a problem?',a:'cutting down forests; it destroys habitats and removes trees that clean the air'},
+      {q:'How does renewable energy help the environment?',a:'it makes power without burning fossil fuels, so less pollution'},
+      {q:'What is the greenhouse effect?',a:'gases trapping heat in the atmosphere, warming the Earth'},
+      {q:'Give one action a person can take to help the planet.',a:'use less plastic, recycle, save energy/water, or plant trees'},
+      {q:'Why do we protect national parks?',a:'to keep natural environments and wildlife safe'},
+      {q:'What is an ecosystem?',a:'living things and their environment interacting together'},
+      {q:'Name a way to reduce car pollution in cities.',a:'public transport, bikes, walking or electric vehicles'},
+      {q:'Name a natural hazard and one way to stay safe.',a:'e.g. bushfire — have a plan and follow warnings'}]}
+  }
+};
+</script>
+<script src="subjects.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>

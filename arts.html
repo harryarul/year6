@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Year 6 Creative Arts — NSW Stage 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="subjects.css">
+<link rel="stylesheet" href="arts.css">
+</head>
+<body>
+<script>
+window.SUBJECT={
+  title:'Creative Arts', kicker:'NSW Stage 3 · Creative Arts', heroWord:'Arts',
+  sub:'Draw comics, characters and game art, make beats, act out epic scenes and move to the music.',
+  GROUP:{make:'Make & Design', perform:'Perform'},
+  TOPICS:[
+    {id:'visual',name:'Visual Arts',group:'make',accent:'var(--berry)',icon:'🐉',
+     intro:'Draw cool stuff — dragons, characters, comics, graffiti-style lettering and game pixel art.',
+     pics:[['🐉','Creatures'],['💥','Comics'],['🎮','Game art'],['🖍️','Colour']]},
+    {id:'music',name:'Music',group:'perform',accent:'var(--ocean)',icon:'🎧',
+     intro:'Beats, rhythm, instruments and the music that powers your favourite games and films.',
+     pics:[['🥁','Beats'],['🎸','Guitar'],['🎹','Keys'],['🎧','Mixing']]},
+    {id:'drama',name:'Drama',group:'perform',accent:'var(--coral)',icon:'🎬',
+     intro:'Acting, action scenes, voice acting and improvising on the spot — like a film hero.',
+     pics:[['🦸','Heroes'],['🎬','Scenes'],['🗣️','Voice'],['🎭','Roles']]},
+    {id:'dance',name:'Dance',group:'perform',accent:'var(--amber)',icon:'⚡',
+     intro:'Movement, rhythm and street-style moves — footwork that even helps you on the sports field.',
+     pics:[['🕺','Moves'],['⚡','Energy'],['🎶','Rhythm'],['🤸','Flips']]}
+  ],
+  VIDEOS:{
+    visual:[
+      {title:'How To Draw a Dragon (step by step)',by:'Cartooning Club How to Draw',id:'1U2qmfay1Eo'},
+      {title:'More “how to draw” tutorials — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=art+for+kids+hub+how+to+draw+cool'}
+    ],
+    music:[
+      {title:'How to make a beat for beginners — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=how+to+make+a+beat+for+beginners'},
+      {title:'Make music in your browser',by:'Chrome Music Lab',url:'https://musiclab.chromeexperiments.com'}
+    ],
+    drama:[
+      {title:'Drama & improv games — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=drama+improv+games+for+kids'}
+    ],
+    dance:[
+      {title:'Easy dance moves for beginners — search',by:'YouTube',url:'https://www.youtube.com/results?search_query=easy+street+dance+moves+for+beginners'}
+    ]
+  },
+  EXPLORE:{
+    visual:{kind:'pixel',title:'Pixel-art studio: design a game sprite',hint:'Pick a colour and tap the squares to build your own 8-bit character — just like classic video games.',
+      links:[['✏️ How-to-draw tutorials','https://www.youtube.com/results?search_query=art+for+kids+hub+how+to+draw'],['🎮 Make pixel art (Piskel)','https://www.piskelapp.com']]},
+    music:{kind:'sort',title:'Sorting game: Which instrument family?',hint:'Tap the family each instrument belongs to.',
+      cats:['Strings','Percussion','Wind & Brass'],
+      items:[['Guitar','Strings'],['Violin','Strings'],['Cello','Strings'],['Drums','Percussion'],['Xylophone','Percussion'],['Tambourine','Percussion'],['Trumpet','Wind & Brass'],['Flute','Wind & Brass'],['Saxophone','Wind & Brass'],['Trombone','Wind & Brass']],
+      links:[['🎹 Chrome Music Lab','https://musiclab.chromeexperiments.com']]},
+    drama:{kind:'prompt',title:'Acting challenge generator',hint:'Tap for a challenge, then act it out for 10 seconds. Big energy!',
+      prompts:['Act out a superhero landing after a giant jump.','Pretend you just won a video-game championship.','Be a robot whose battery is running low.','Mime opening a present you really wanted.','Go from scared to brave in five seconds.','Be a sports commentator calling an amazing goal.','Freeze like a statue of a fearless warrior.','Cross the room — but the floor is lava!','Act like a spy sneaking past guards.','Be a coach giving a fired-up team talk.'],
+      links:[['🎭 Drama games — search','https://www.youtube.com/results?search_query=drama+improv+games+for+kids']]},
+    dance:{kind:'prompt',title:'Move challenge generator',hint:'Tap for a move and try it to a beat. Make it your own!',
+      prompts:['Invent a four-step victory dance.','Move like you’re dribbling and shooting a basketball, to the beat.','Do a slow-motion action-movie move.','Make up a three-move secret handshake.','Freeze… then bust one cool move.','Try a robot / popping move.','Create a move named after your favourite sport.','Do footwork like a soccer player beating a defender.','Add a spin and a freeze at the end.','Copy a move, then change the speed to make it yours.'],
+      links:[['⚡ Easy moves — search','https://www.youtube.com/results?search_query=easy+street+dance+moves+for+beginners']]}
+  },
+  Q:{
+    visual:{simple:[
+      {q:'Name the three primary colours.',a:'red, blue and yellow'},
+      {q:'What two colours mix to make green?',a:'blue and yellow'},
+      {q:'What two colours make orange?',a:'red and yellow'},
+      {q:'What two colours mix to make purple?',a:'red and blue'},
+      {q:'What is a “sketch”?',a:'a quick, rough drawing'},
+      {q:'What do comic artists draw their pictures inside (boxes on a page)?',a:'panels'},
+      {q:'In comics, what is the talking shown inside?',a:'speech bubbles'},
+      {q:'What do we call light and dark areas that make art look 3D?',a:'shading'},
+      {q:'What is “pixel art”?',a:'pictures made of small coloured squares, like in old video games'},
+      {q:'What tool removes pencil marks?',a:'an eraser (rubber)'},
+      {q:'What do we call the edge or outline of a shape?',a:'a line'}],
+    hard:[
+      {q:'What are the three secondary colours?',a:'green, orange and purple'},
+      {q:'What does “perspective” do in a drawing?',a:'makes it look 3D, with far things looking smaller'},
+      {q:'What is a “vanishing point”?',a:'the point where parallel lines seem to meet on the horizon'},
+      {q:'What are warm and cool colours?',a:'warm: reds/oranges/yellows; cool: blues/greens/purples'},
+      {q:'Name three elements of art.',a:'e.g. line, shape and colour (also form, texture, space, value)'},
+      {q:'What is a “character design”?',a:'creating the look of a character for comics, games or animation'},
+      {q:'What is a “thumbnail” in art and design?',a:'a small quick sketch to plan an idea'},
+      {q:'What is a colour “palette”?',a:'the set of colours chosen for an artwork'},
+      {q:'Why is shading useful?',a:'it shows light and shadow and makes objects look solid'},
+      {q:'What is the “rule of thirds”?',a:'placing the main subject off-centre for a stronger composition'},
+      {q:'What style of bold street lettering is also called “tags” or bubble letters?',a:'graffiti-style lettering'}]},
+    music:{simple:[
+      {q:'What is the steady pulse in music called?',a:'the beat'},
+      {q:'What is “rhythm”?',a:'the pattern of long and short sounds'},
+      {q:'What does “tempo” mean?',a:'the speed of the music'},
+      {q:'Name a percussion instrument.',a:'drums (or tambourine, xylophone)'},
+      {q:'Name a string instrument.',a:'guitar (or violin)'},
+      {q:'What does “pitch” mean?',a:'how high or low a sound is'},
+      {q:'What is a “melody”?',a:'the main tune you can hum or sing'},
+      {q:'What do we call loud and soft in music?',a:'dynamics'},
+      {q:'What family is the trumpet in?',a:'brass'},
+      {q:'What is a “loop” when making beats?',a:'a short section of sound repeated over and over'},
+      {q:'How many beats are usually in a bar of 4/4 music?',a:'four'}],
+    hard:[
+      {q:'What is “harmony”?',a:'two or more notes played together that sound good'},
+      {q:'What is the difference between beat and rhythm?',a:'the beat is the steady pulse; rhythm is the pattern of sounds over it'},
+      {q:'Name the four main instrument families.',a:'strings, woodwind, brass and percussion'},
+      {q:'What is a “chord”?',a:'three or more notes played at the same time'},
+      {q:'What does “forte” mean?',a:'loud'},
+      {q:'What does “piano” mean as a music term?',a:'soft (quiet)'},
+      {q:'What is tempo measured in?',a:'beats per minute (BPM)'},
+      {q:'What is the difference between a verse and a chorus?',a:'the verse tells the story; the chorus repeats and is the catchy part'},
+      {q:'What is an “octave”?',a:'the distance between a note and the next note with the same name'},
+      {q:'Why do games and films have soundtracks?',a:'music sets the mood and builds excitement'},
+      {q:'What is “syncopation”?',a:'accenting the off-beats for a surprising rhythm'}]},
+    drama:{simple:[
+      {q:'What is “acting”?',a:'pretending to be a character'},
+      {q:'What is a “script”?',a:'the written words the actors say'},
+      {q:'What do we call practising a play before performing?',a:'rehearsing'},
+      {q:'What are “props”?',a:'objects actors use on stage'},
+      {q:'What is a “costume”?',a:'the clothes worn to look like a character'},
+      {q:'What is the area where actors perform called?',a:'the stage'},
+      {q:'What is “mime”?',a:'acting using movement and no words'},
+      {q:'What do we call the people watching a play?',a:'the audience'},
+      {q:'What is “improvisation”?',a:'acting or making it up without a script'},
+      {q:'Name something that helps an actor show a feeling.',a:'facial expression, voice or body language'},
+      {q:'What do we call the person an actor plays?',a:'a character'}],
+    hard:[
+      {q:'What is a “freeze frame” in drama?',a:'actors hold a frozen pose to show a moment'},
+      {q:'What does a director do?',a:'guides the actors and decides how the play looks'},
+      {q:'What is “projection” in acting?',a:'speaking loudly and clearly so everyone hears'},
+      {q:'What is “body language”?',a:'showing meaning through posture, gestures and movement'},
+      {q:'What is a “monologue”?',a:'a long speech by one character'},
+      {q:'What is “stage presence”?',a:'confidence and energy that holds the audience’s attention'},
+      {q:'What is “blocking” in theatre?',a:'planning where actors move on stage'},
+      {q:'What does it mean to stay “in character”?',a:'keeping acting as the character you are playing'},
+      {q:'What is “voice acting”?',a:'acting using only your voice, e.g. for games or animation'},
+      {q:'How could you make a villain sound scary with your voice?',a:'use a lower, slower, more menacing tone'},
+      {q:'Why is improvisation a useful skill?',a:'it builds quick thinking and confidence'}]},
+    dance:{simple:[
+      {q:'What keeps dancers moving together?',a:'the beat / rhythm'},
+      {q:'What is “choreography”?',a:'the planned set of dance moves'},
+      {q:'Why do dancers warm up first?',a:'to prepare muscles and avoid injury'},
+      {q:'What does “in time” mean?',a:'moving with the beat'},
+      {q:'Name a body part you can isolate in a move.',a:'head, shoulders, hips or arms'},
+      {q:'What is a “freeze” in dance?',a:'stopping still in a pose'},
+      {q:'What is a “routine”?',a:'a sequence of moves performed in order'},
+      {q:'What street style uses spins and floor moves?',a:'breakdancing (b-boying)'},
+      {q:'Why is balance important in dance?',a:'to control moves and stay steady'},
+      {q:'What does “tempo” mean in dance?',a:'the speed of the music and moves'},
+      {q:'What is “freestyle”?',a:'making up moves on the spot'}],
+    hard:[
+      {q:'Name two elements of dance.',a:'e.g. body, action, space, time or energy'},
+      {q:'What does “levels” mean in dance?',a:'using high, medium and low positions'},
+      {q:'What is “canon” in dance?',a:'dancers do the same move one after another, like a wave'},
+      {q:'What is “unison”?',a:'everyone doing the same move at the same time'},
+      {q:'How can energy/dynamics change a move?',a:'e.g. sharp vs smooth, or strong vs gentle'},
+      {q:'Why do many sports use dance-like footwork?',a:'for agility, balance and quick changes of direction'},
+      {q:'What is “musicality” in dance?',a:'matching your movement to the feel of the music'},
+      {q:'Name a street-dance style.',a:'breaking, popping or locking'},
+      {q:'What is “choreographing”?',a:'designing and arranging dance movements'},
+      {q:'Why warm up and cool down for dance?',a:'to prevent injury and help muscles recover'},
+      {q:'What is a “transition” between moves?',a:'how you smoothly link one move to the next'}]}
+  }
+};
+</script>
+<script src="subjects.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>

@@ -26,19 +26,19 @@ const SUBJECTS = [
     desc:'Living things, materials, forces, and the digital world.',
     accent:'var(--green)',  dk:'var(--green-dk)',  icon:'flask' },
 
-  { name:'History',              short:'History',   file:'history.html',   ready:false,
+  { name:'History',              short:'History',   file:'history.html',   ready:true,
     desc:'Australia as a nation, democracy, and people of the past.',
     accent:'var(--amber)',  dk:'var(--amber-dk)',  icon:'clock' },
 
-  { name:'Geography',            short:'Geography', file:'geography.html', ready:false,
+  { name:'Geography',            short:'Geography', file:'geography.html', ready:true,
     desc:'Places, environments, maps and the wider world.',
     accent:'var(--ocean)',  dk:'var(--ocean-dk)',  icon:'globe' },
 
-  { name:'Creative Arts',        short:'Arts',      file:'arts.html',      ready:false,
+  { name:'Creative Arts',        short:'Arts',      file:'arts.html',      ready:true,
     desc:'Visual arts, music, drama and dance.',
     accent:'var(--berry)',  dk:'var(--berry-dk)',  icon:'palette' },
 
-  { name:'Health & PE',          short:'Health',    file:'pdhpe.html',     ready:false,
+  { name:'Health & PE',          short:'Health',    file:'pdhpe.html',     ready:true,
     desc:'Healthy bodies, wellbeing, movement and games.',
     accent:'var(--leaf)',   dk:'var(--leaf-dk)',   icon:'heart' }
 ];
