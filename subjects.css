@@ -1,0 +1,162 @@
+/* subjects.css — shared styles for Year 6 Hub subject pages.
+   Each subject page sets its theme in its own <subject>.css by overriding
+   --primary, --primary-dk, --hero1, --hero2.  Quiz tiers stay green/coral. */
+:root{
+  --paper:#fbf6ec; --ink:#2b2b2e; --line:#e6dcc8; --card:#ffffff;
+  --teal:#1f7a72; --teal-dk:#155a54;
+  --coral:#ee6c4d; --coral-dk:#d4502f; --coral-soft:#fdeadf;
+  --green:#3a9d6b; --green-dk:#2c7a52; --green-soft:#e3f3e9;
+  --amber:#e6a23c; --amber-dk:#c2811f;
+  --ocean:#3a7ca5; --ocean-dk:#2c5f7e;
+  --berry:#c25b87; --berry-dk:#9e426a;
+  --leaf:#6f942f; --leaf-dk:#566f25;
+  /* themeable (defaults) */
+  --primary:#1f7a72; --primary-dk:#155a54;
+  --hero1:#1f7a72; --hero2:#3a7ca5;
+  --shadow:0 6px 0 rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+h1,h2,h3,h4{font-family:'Baloo 2',cursive;letter-spacing:.2px}
+body{font-family:'Nunito',sans-serif;color:var(--ink);line-height:1.5;min-height:100vh;
+  background:radial-gradient(circle at 12% 8%, color-mix(in srgb,var(--primary) 18%,transparent), transparent 42%),
+    radial-gradient(circle at 88% 92%, color-mix(in srgb,var(--hero2) 14%,transparent), transparent 45%),var(--paper);
+  background-attachment:fixed}
+.wrap{max-width:1000px;margin:0 auto;padding:24px 18px 40px}
+
+header.site{text-align:center;padding:26px 0 10px}
+header.site .kicker{display:inline-block;background:var(--primary);color:#fff;font-weight:800;font-size:.78rem;
+  letter-spacing:1.4px;text-transform:uppercase;padding:5px 14px;border-radius:30px;margin-bottom:12px;box-shadow:0 4px 0 var(--primary-dk)}
+header.site h1{font-size:clamp(2rem,6vw,3.1rem);line-height:1.04}
+header.site h1 span{color:var(--hero2)}
+header.site p.sub{max-width:580px;margin:10px auto 0;color:#6a6357;font-weight:600}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:24px}
+.strand-label{grid-column:1/-1;font-family:'Baloo 2';font-size:1.15rem;margin-top:14px;display:flex;align-items:center;gap:10px;color:var(--primary-dk)}
+.strand-label::before{content:"";width:14px;height:14px;border-radius:4px;background:var(--hero2);transform:rotate(45deg)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;
+  transition:transform .12s,box-shadow .12s;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;right:-26px;top:-26px;width:96px;height:96px;border-radius:50%;background:var(--accent,var(--primary));opacity:.08}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.07)}
+.card .ic{font-size:1.7rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--accent,var(--primary)) 15%,white);border-radius:13px;margin-bottom:10px}
+.card h3{font-size:1.18rem;line-height:1.1}
+.card p{font-size:.85rem;color:#867d6d;margin-top:6px;font-weight:600}
+
+.backbtn{background:#fff;border:2px solid var(--line);border-radius:30px;padding:8px 16px;font-family:'Baloo 2';
+  font-size:.95rem;cursor:pointer;color:var(--primary-dk);box-shadow:0 3px 0 rgba(0,0,0,.06);text-decoration:none;display:inline-block}
+.backbtn:hover{background:color-mix(in srgb,var(--primary) 10%,white)}
+.backbtn.hub{color:#fff;background:var(--hero2);border-color:transparent;box-shadow:0 3px 0 var(--primary-dk)}
+.backbtn.hub:hover{filter:brightness(.93)}
+.nav-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+#home .nav-row{margin-top:6px}
+
+.topic-view{display:none}
+.topic-view.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.topic-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 16px;margin-bottom:6px}
+.topic-head h2{font-size:clamp(1.6rem,5vw,2.3rem)}
+.topic-head .badge{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:20px;
+  background:color-mix(in srgb,var(--primary) 14%,white);color:var(--primary-dk)}
+.topic-intro{color:#6a6357;font-weight:600;margin-bottom:14px;max-width:660px}
+
+.hero-banner{border-radius:18px;padding:26px 22px;margin-bottom:16px;color:#fff;position:relative;overflow:hidden;
+  background:linear-gradient(120deg,var(--hero1),var(--hero2))}
+.hero-banner .emoji{font-size:3rem;line-height:1}
+.hero-banner .cap{font-weight:700;margin-top:6px;max-width:560px}
+.pic-strip{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.pic{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 12px;text-align:center;min-width:78px;box-shadow:0 3px 0 rgba(0,0,0,.04)}
+.pic .pe{font-size:1.8rem}.pic small{display:block;color:#867d6d;font-weight:700;margin-top:2px;font-size:.72rem}
+
+.subtabs{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:30px;padding:4px;box-shadow:0 3px 0 rgba(0,0,0,.05);margin-bottom:22px;flex-wrap:wrap}
+.subtab{border:none;background:transparent;font-family:'Baloo 2';font-size:1rem;padding:8px 18px;border-radius:24px;cursor:pointer;color:#8a8275}
+.subtab.on{background:var(--primary);color:#fff}
+.sec{display:none}.sec.active{display:block;animation:fade .25s ease}
+
+.video-card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px;margin-bottom:16px;box-shadow:0 3px 0 rgba(0,0,0,.04)}
+.video-card h4{font-size:1.1rem;margin-bottom:4px}
+.video-card .by{font-size:.8rem;color:#9a917f;font-weight:700;margin-bottom:10px}
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.video-card a.yt{display:inline-block;margin-top:8px;font-family:'Baloo 2';font-size:.85rem;color:var(--coral-dk);text-decoration:underline}
+.video-link{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;
+  text-decoration:none;color:var(--ink);box-shadow:0 3px 0 rgba(0,0,0,.04)}
+.video-link:hover{background:color-mix(in srgb,var(--primary) 8%,white)}
+.video-link .play{font-size:1.6rem}
+.video-link b{display:block;font-family:'Baloo 2'}.video-link small{color:#9a917f;font-weight:700}
+
+.game{background:#fff;border:2px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 3px 0 rgba(0,0,0,.04);margin-bottom:18px}
+.game h4{font-size:1.2rem;margin-bottom:4px}
+.game .ghint{color:#9a917f;font-weight:600;font-size:.88rem;margin-bottom:14px}
+.game .prompt{font-family:'Baloo 2';font-size:1.4rem;text-align:center;padding:18px;background:color-mix(in srgb,var(--primary) 10%,white);border-radius:12px;margin-bottom:14px}
+.opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.opt{border:2px solid var(--line);background:#fff;font-family:'Baloo 2';font-size:1rem;padding:10px 18px;border-radius:24px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.05)}
+.opt:hover{background:color-mix(in srgb,var(--primary) 10%,white)}
+.opt.right{background:var(--green);color:#fff;border-color:transparent}
+.opt.wrong{background:var(--coral);color:#fff;border-color:transparent}
+.gscore{text-align:center;font-family:'Baloo 2';margin-top:14px;color:var(--primary-dk)}
+.feedback{text-align:center;font-weight:700;margin-top:10px;min-height:24px}
+
+/* pixel art */
+.pixgrid{display:grid;gap:2px;justify-content:center;margin:0 auto 14px;width:max-content;background:var(--line);padding:2px;border-radius:8px}
+.px{width:20px;height:20px;background:#fff;cursor:pointer;border-radius:3px}
+.palette{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.sw{width:30px;height:30px;border-radius:8px;cursor:pointer;border:3px solid transparent;box-shadow:0 2px 0 rgba(0,0,0,.1)}
+.sw.sel{border-color:var(--ink)}
+
+/* binary builder */
+.bits{display:flex;gap:10px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.bit{text-align:center;cursor:pointer}
+.bit .b{width:60px;height:60px;border-radius:14px;border:2px solid var(--line);display:flex;align-items:center;
+  justify-content:center;font-family:'Baloo 2';font-size:1.5rem;background:#fff;box-shadow:0 3px 0 rgba(0,0,0,.05)}
+.bit.on .b{background:var(--hero2);color:#fff;border-color:transparent}
+.bit small{display:block;color:#9a917f;font-weight:700;margin-top:4px}
+.bignum{font-family:'Baloo 2';font-size:2.4rem;text-align:center;color:var(--primary-dk);margin:6px 0}
+
+/* reaction */
+.reactbox{height:160px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';
+  font-size:1.4rem;color:#fff;cursor:pointer;user-select:none;background:var(--ocean)}
+.reactbox.waiting{background:#c8553d}.reactbox.go{background:var(--green)}
+
+/* breathe */
+.breathe-stage{display:flex;flex-direction:column;align-items:center;gap:14px;padding:10px 0}
+.breathe-circle{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,var(--primary),var(--primary-dk));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Baloo 2';transition:transform 4s ease-in-out;transform:scale(.6)}
+.breathe-circle.big{transform:scale(1.15)}
+
+.links-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.linkbtn{display:inline-block;font-family:'Baloo 2';font-size:.9rem;text-decoration:none;color:#fff;background:var(--hero2);
+  padding:9px 16px;border-radius:24px;box-shadow:0 3px 0 var(--primary-dk)}
+.linkbtn.alt{background:var(--amber);box-shadow:0 3px 0 var(--amber-dk)}
+.explore-note{color:#9a917f;font-size:.82rem;font-weight:600;margin:16px 0 6px}
+
+/* quiz */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:20px}
+.tabs{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:30px;padding:4px;box-shadow:0 3px 0 rgba(0,0,0,.05)}
+.tab{border:none;background:transparent;font-family:'Baloo 2';font-size:1rem;padding:8px 22px;border-radius:24px;cursor:pointer;color:#8a8275}
+.tab.simple.on{background:var(--green);color:#fff}
+.tab.hard.on{background:var(--coral);color:#fff}
+.btn{border:none;font-family:'Baloo 2';font-size:.95rem;padding:9px 18px;border-radius:24px;cursor:pointer;color:#fff;background:var(--primary);box-shadow:0 4px 0 var(--primary-dk)}
+.btn.sun{background:#f4b942;box-shadow:0 4px 0 #cf9514;color:#5a4205}
+.btn.ghost{background:#fff;color:var(--primary-dk);border:2px solid var(--line);box-shadow:0 3px 0 rgba(0,0,0,.06)}
+.ws-title{font-family:'Baloo 2';font-size:1.25rem;margin-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ws-title .pill{font-size:.7rem;font-weight:800;text-transform:uppercase;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
+.pill.green{background:var(--green-soft);color:var(--green)}
+.pill.coral{background:var(--coral-soft);color:var(--coral-dk)}
+.ws-note{color:#9a917f;font-size:.85rem;font-weight:600;margin-bottom:16px}
+ol.questions{list-style:none;counter-reset:q}
+ol.questions li{counter-increment:q;background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px 16px 14px 54px;margin-bottom:10px;position:relative;box-shadow:0 3px 0 rgba(0,0,0,.04)}
+ol.questions li::before{content:counter(q);position:absolute;left:12px;top:12px;width:30px;height:30px;background:var(--paper);
+  border:2px solid var(--line);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-size:.9rem;color:var(--primary-dk)}
+ol.questions .qtext{font-weight:700;font-size:1.02rem}
+ol.questions .ans{margin-top:8px;font-weight:700;color:var(--green);background:var(--green-soft);border-radius:8px;padding:6px 12px;display:none;font-size:.95rem}
+ol.questions .ans::before{content:"Answer: ";color:#2c7a52}
+body.show-answers ol.questions .ans{display:block}
+.reveal{margin-top:8px;background:transparent;border:none;color:var(--coral-dk);font-family:'Baloo 2';font-size:.85rem;cursor:pointer;padding:0;text-decoration:underline}
+body.show-answers .reveal{display:none}
+
+@media print{
+  body{background:#fff}
+  header.site,.grid,.nav-row,.subtabs,#secWatch,#secExplore,.toolbar,.reveal,.card,.hero-banner,.pic-strip{display:none!important}
+  .topic-view{display:block!important}.sec#secQuiz{display:block!important}
+  ol.questions li{box-shadow:none;break-inside:avoid}
+}
